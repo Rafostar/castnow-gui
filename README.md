@@ -24,7 +24,7 @@ Or manually download castnow-gui file from root of this repo and set it as execu
 
 ### To do:
 - [X] Play file from specified path
-- [ ] Open file using file browser
+- [X] Open file using file browser
 - [ ] Open network link
 - [ ] Play files within folder function
 - [ ] Play video+audio from youtube link
