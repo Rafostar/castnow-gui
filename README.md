@@ -1,15 +1,15 @@
 # castnow-gui WIP
-castnow-gui - Qt interface for command-line chromecast player Edit
+castnow-gui - Qt interface for command-line chromecast player
 
 ## THIS IS A VERY EARLY WIP PROJECT - DON'T DOWNLOAD YET!
 
-### Requirement
+### Requirements
 Here is a list of required programs that castnow-gui depends on:
 * `screen`
 * `ffmpeg`
 * `zenity`
 
-Please make sure you all of the above installed before running castnow-gui.
+Please make sure you have all of the above installed before running castnow-gui.
 
 ### To do:
 - [X] Play file from specified path
