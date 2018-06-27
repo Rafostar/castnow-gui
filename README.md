@@ -12,7 +12,7 @@ Here is a list of required programs that castnow-gui depends on:
 
 Please make sure you have all of the above installed before running castnow-gui.
 
-Most of them should be availible from your linux distro repos.
+Most of them should be available from your linux distro repos.
 Try installing them with your package manager or follow the links for more info.
 
 ### Install or update
