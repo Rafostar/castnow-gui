@@ -37,3 +37,4 @@ Or manually download castnow-gui file from root of this repo and set it as execu
 - [ ] VAAPI encoding for low cpu usage
 - [ ] Start playing video from last point
 - [ ] Stream video from selected time/chapter
+- [ ] Desktop streaming
