@@ -21,7 +21,7 @@ Try installing them with your package manager or follow the links for more info.
 
 `sudo chmod +x ~/.local/bin/castnow-gui`
 
-Or manually download cast-now file from root of this repo and set it as executable.
+Or manually download castnow-gui file from root of this repo and set it as executable.
 
 ### To do:
 - [X] Play file from specified path
