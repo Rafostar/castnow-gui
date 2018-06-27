@@ -18,6 +18,7 @@ Try installing them with your package manager or follow the links for more info.
 
 ### Install or update
 `wget -N -P ~/.local/bin/ https://github.com/Rafostar/castnow-gui/raw/master/castnow-gui`
+
 `sudo chmod +x ~/.local/bin/castnow-gui`
 
 Or manually download cast-now file from root of this repo and set it as executable.
