@@ -44,7 +44,7 @@
      <height>0</height>
     </size>
    </property>
-   <widget class="QPlainTextEdit" name="InsertFilePath">
+   <widget class="QPlainTextEdit" name="insertFilePath">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -69,7 +69,7 @@
      <string>Enter filepath here...</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="OpenFileButton">
+   <widget class="QPushButton" name="openFileButton">
     <property name="geometry">
      <rect>
       <x>300</x>
@@ -82,7 +82,7 @@
      <string>Open file</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="streamButton">
     <property name="geometry">
      <rect>
       <x>300</x>
@@ -136,7 +136,7 @@
   </action>
   <action name="actionOpen_file">
    <property name="text">
-    <string>Open file...</string>
+    <string>Open file</string>
    </property>
   </action>
   <action name="actionOpen_folder">
