@@ -12,6 +12,7 @@ Here is a list of required programs that castnow-gui depends on:
 * [youtube-dl](https://github.com/rg3/youtube-dl)
 
 Please make sure you have all of the above installed before running castnow-gui.
+
 Most of them (if not all) should be availible from your linux distro repos.
 So try installing with your package manager.
 
