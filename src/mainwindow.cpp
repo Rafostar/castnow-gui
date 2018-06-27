@@ -86,6 +86,7 @@ void MainWindow::on_openFileButton_clicked()
     QString DefaultPath = "/home/";
     DefaultPath += getlogin();
     DefaultPath += "/Videos/";
+
     OpenFileName = QFileDialog::getOpenFileName(this, tr("Open File"), DefaultPath, tr("Media Files (*.mp3 *.mp4 *.mkv *.avi)"));
     ui->insertFilePath->setText(OpenFileName);
 }
