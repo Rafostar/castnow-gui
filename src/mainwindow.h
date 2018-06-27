@@ -18,8 +18,11 @@ public:
 private slots:
     void on_streamButton_clicked();
 
-private:
+public:
     Ui::MainWindow *ui;
+    int checkFilePath();
+    void statusBarCastingMsg();
+    void statusBarError();
 };
 
 #endif // MAINWINDOW_H
