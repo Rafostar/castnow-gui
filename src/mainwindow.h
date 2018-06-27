@@ -18,6 +18,8 @@ public:
 private slots:
     void on_streamButton_clicked();
 
+    void on_openFileButton_clicked();
+
 public:
     Ui::MainWindow *ui;
     int checkFilePath();

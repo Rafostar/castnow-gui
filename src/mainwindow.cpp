@@ -1,15 +1,18 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QFileDialog>
 #include <string>
 #include <sstream>
 #include <unistd.h>
 #include <iostream>
 #include <fstream>
 
+
 using namespace std;
 
 QString FilePathQS;
 string FilePath;
+QString OpenFileName;
 QString Message;
 
 //---Commands---//
@@ -76,4 +79,13 @@ void MainWindow::on_streamButton_clicked()
     {
         statusBarError();
     }
+}
+
+void MainWindow::on_openFileButton_clicked()
+{
+    QString DefaultPath = "/home/";
+    DefaultPath += getlogin();
+    DefaultPath += "/Videos/";
+    OpenFileName = QFileDialog::getOpenFileName(this, tr("Open File"), DefaultPath, tr("Media Files (*.mp3 *.mp4 *.mkv *.avi)"));
+    ui->insertFilePath->setText(OpenFileName);
 }
