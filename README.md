@@ -7,7 +7,6 @@ castnow-gui - Qt interface for command-line chromecast player
 Here is a list of required programs that castnow-gui depends on:
 * [castnow](https://github.com/xat/castnow)
 * [screen](https://www.gnu.org/software/screen)
-* [zenity](https://github.com/GNOME/zenity)
 * [ffmpeg](https://github.com/FFmpeg/FFmpeg)
 * [youtube-dl](https://github.com/rg3/youtube-dl)
 
