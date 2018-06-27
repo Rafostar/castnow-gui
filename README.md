@@ -3,9 +3,10 @@ Zenity GUI for castnow - a command-line chromecast player
 ## THIS IS A VERY EARLY WIP PROJECT - DON'T DOWNLOAD YET!
 
 ### To do:
-- [ ] Open-file function
+- [ ] Open file function
 - [ ] Open http link function
-- [ ] Play youtube link
+- [ ] Play video+audio from youtube link
+- [ ] Play audio only from youtube link
 - [ ] Convert video using ffmpeg on fly
 - [ ] Support fo external subtitles
 - [ ] Burn build-in subtitles (with fonts) to video
