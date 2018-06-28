@@ -13,15 +13,16 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
+    shellfunctions shell;
     QDesktopWidget *desktop = QApplication::desktop();
 
-    int srodekSzerEkranu;
-    int srodekWysEkranu;
+    shell.desktopWidth = desktop->width();
+    shell.desktopHeight = desktop->height();
 
-    srodekSzerEkranu = (desktop->width() - w.width())/2;
-    srodekWysEkranu = (desktop->height() - w.height()-50)/2;
+    int middleWidth = (shell.desktopWidth - w.width())/2;
+    int middleHeight = (shell.desktopHeight - w.height()-50)/2;
 
-    w.move(srodekSzerEkranu,srodekWysEkranu);
+    w.move(middleWidth,middleHeight);
     w.show();
 
     return a.exec();

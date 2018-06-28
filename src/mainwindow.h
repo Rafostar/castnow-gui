@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "shellfunctions.h"
 #include <QMainWindow>
 
 namespace Ui {
@@ -15,16 +16,19 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    int checkFilePath();
+    void statusBarCastingMsg();
+    void statusBarError();
+
 private slots:
     void on_streamButton_clicked();
 
     void on_openFileButton_clicked();
 
-public:
+    void on_castDesktopButton_clicked();
+
+private:
     Ui::MainWindow *ui;
-    int checkFilePath();
-    void statusBarCastingMsg();
-    void statusBarError();
 };
 
 #endif // MAINWINDOW_H

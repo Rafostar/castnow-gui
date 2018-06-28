@@ -1,12 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QFileDialog>
+#include <QDesktopWidget>
 #include <string>
 #include <sstream>
 #include <unistd.h>
 #include <iostream>
 #include <fstream>
-
 
 using namespace std;
 
@@ -15,11 +15,7 @@ string FilePath;
 QString OpenFileName;
 QString Message;
 
-//---Commands---//
-string BasicCommand="screen -d -m -S cast_session castnow";
-string ExtraCommands="";
-const char* StopRunningScreen="screen -S cast_session -X stuff ^C > /dev/null"; //prevent running castnow more than once
-
+shellfunctions shell;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -67,11 +63,11 @@ void MainWindow::on_streamButton_clicked()
     if(checkFilePath() == 0)
     {
         stringstream ss;
-        ss << BasicCommand << " '" << FilePath << "' " << ExtraCommands;
+        ss << shell.BasicCommand << " '" << FilePath << "' " << shell.ExtraCommands;
         string tmp = ss.str();
         const char* CastCommand = tmp.c_str();
 
-        system(StopRunningScreen); //must be here to stop screen session after reopening castnow-gui
+        system(shell.StopRunningScreen); //must be here to stop screen session after reopening castnow-gui
         system(CastCommand);
         statusBarCastingMsg();
     }
@@ -89,4 +85,9 @@ void MainWindow::on_openFileButton_clicked()
 
     OpenFileName = QFileDialog::getOpenFileName(this, tr("Open File"), DefaultPath, tr("Media Files (*.mp3 *.mp4 *.mkv *.avi)"));
     ui->insertFilePath->setText(OpenFileName);
+}
+
+void MainWindow::on_castDesktopButton_clicked()
+{
+    shell.DesktopStreamingVAAPI(1600,900,30,0,4.5);
 }
