@@ -10,12 +10,12 @@
 
 using namespace std;
 
-QString FilePathQS;
-string FilePath;
-QString OpenFileName;
-QString Message;
+QString filePathQS;
+string filePath;
+QString openFileName;
+QString message;
 
-shellfunctions shell;
+ShellFunctions shell;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -31,10 +31,10 @@ MainWindow::~MainWindow()
 
 int MainWindow::checkFilePath()
 {
-    FilePathQS = ui->insertFilePath->text();
-    FilePath = FilePathQS.toUtf8().constData();
+    filePathQS = ui->insertFilePath->text();
+    filePath = filePathQS.toUtf8().constData();
 
-    if(FilePath == "")
+    if(filePath == "")
     {
         return 1;
     }
@@ -47,10 +47,10 @@ int MainWindow::checkFilePath()
 
 void MainWindow::statusBarCastingMsg()
 {
-    string BaseFilename = FilePath.substr(FilePath.find_last_of("/\\") + 1);
-    QString BaseFilenameQS = QString::fromStdString(BaseFilename);
-    Message = QString("Casting: %1").arg(BaseFilenameQS);
-    ui->statusBar->showMessage(Message);
+    string baseFilename = filePath.substr(filePath.find_last_of("/\\") + 1);
+    QString baseFilenameQS = QString::fromStdString(baseFilename);
+    message = QString("Casting: %1").arg(baseFilenameQS);
+    ui->statusBar->showMessage(message);
 }
 
 void MainWindow::statusBarError()
@@ -63,12 +63,12 @@ void MainWindow::on_streamButton_clicked()
     if(checkFilePath() == 0)
     {
         stringstream ss;
-        ss << shell.BasicCommand << " '" << FilePath << "' " << shell.ExtraCommands;
+        ss << shell.basicCommand << " " << shell.castnowPath << " '" << filePath << "' " << shell.extraCommands;
         string tmp = ss.str();
-        const char* CastCommand = tmp.c_str();
+        const char* castCommand = tmp.c_str();
 
-        system(shell.StopRunningScreen); //must be here to stop screen session after reopening castnow-gui
-        system(CastCommand);
+        system(shell.stopRunningScreen); //must be here to stop screen session after reopening castnow-gui
+        system(castCommand);
         statusBarCastingMsg();
     }
     else
@@ -79,15 +79,18 @@ void MainWindow::on_streamButton_clicked()
 
 void MainWindow::on_openFileButton_clicked()
 {
-    QString DefaultPath = "/home/";
-    DefaultPath += getlogin();
-    DefaultPath += "/Videos/";
+    QString defaultPath = "/home/";
+    defaultPath += getlogin();
+    defaultPath += "/Videos/";
 
-    OpenFileName = QFileDialog::getOpenFileName(this, tr("Open File"), DefaultPath, tr("Media Files (*.mp3 *.mp4 *.mkv *.avi)"));
-    ui->insertFilePath->setText(OpenFileName);
+    openFileName = QFileDialog::getOpenFileName(this, tr("Open File"), defaultPath, tr("Media Files (*.mp3 *.mp4 *.mkv *.avi)"));
+    if(openFileName!="")
+    {
+        ui->insertFilePath->setText(openFileName);
+    }
 }
 
 void MainWindow::on_castDesktopButton_clicked()
 {
-    shell.DesktopStreamingVAAPI(1600,900,30,0,4.5);
+    shell.DesktopStreamingVAAPI(1600,900,30,32,0,4.5);
 }

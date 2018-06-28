@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
-    shellfunctions shell;
+    ShellFunctions shell;
     QDesktopWidget *desktop = QApplication::desktop();
 
     shell.desktopWidth = desktop->width();
