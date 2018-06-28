@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "config.h"
 #include <QFileDialog>
 #include <QDesktopWidget>
 #include <string>
@@ -93,4 +94,10 @@ void MainWindow::on_openFileButton_clicked()
 void MainWindow::on_castDesktopButton_clicked()
 {
     shell.DesktopStreamingVAAPI(1600,900,30,32,0,4.5);
+}
+
+void MainWindow::on_actionConfig_triggered()
+{
+    Config *configDialog = new Config();
+    configDialog->show();
 }

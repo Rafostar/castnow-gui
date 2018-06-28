@@ -27,6 +27,8 @@ private slots:
 
     void on_castDesktopButton_clicked();
 
+    void on_actionConfig_triggered();
+
 private:
     Ui::MainWindow *ui;
 };

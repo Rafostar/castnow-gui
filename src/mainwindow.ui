@@ -120,8 +120,8 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionOpen_file"/>
-    <addaction name="actionOpen_folder"/>
+    <addaction name="actionOpenFile"/>
+    <addaction name="actionOpenFolder"/>
     <addaction name="actionQuit"/>
    </widget>
    <addaction name="menuFile"/>
@@ -138,12 +138,12 @@
     <string>About</string>
    </property>
   </action>
-  <action name="actionOpen_file">
+  <action name="actionOpenFile">
    <property name="text">
     <string>Open file</string>
    </property>
   </action>
-  <action name="actionOpen_folder">
+  <action name="actionOpenFolder">
    <property name="text">
     <string>Open folder</string>
    </property>
