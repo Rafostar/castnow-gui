@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "configwindow.h"
+#include "aboutwindow.h"
 #include <QFileDialog>
 #include <QDesktopWidget>
 #include <string>
@@ -106,11 +107,17 @@ void MainWindow::on_castDesktopButton_clicked()
 
 void MainWindow::on_actionConfig_triggered()
 {
-    ConfigWindow *configDialog = new ConfigWindow();
+    ConfigWindow *configDialog = new ConfigWindow;
     configDialog->show();
 }
 
 void MainWindow::on_actionQuit_triggered()
 {
     close();
+}
+
+void MainWindow::on_actionAbout_triggered()
+{
+    AboutWindow *aboutDialog = new AboutWindow;
+    aboutDialog->show();
 }

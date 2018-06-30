@@ -1,5 +1,6 @@
 #include "aboutwindow.h"
 #include "ui_aboutwindow.h"
+#include <QDesktopServices>
 
 AboutWindow::AboutWindow(QWidget *parent) :
     QDialog(parent),
@@ -11,9 +12,4 @@ AboutWindow::AboutWindow(QWidget *parent) :
 AboutWindow::~AboutWindow()
 {
     delete ui;
-}
-
-void AboutWindow::on_aboutButtonBox_accepted()
-{
-    close();
 }

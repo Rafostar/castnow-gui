@@ -16,7 +16,6 @@ public:
     ~AboutWindow();
 
 private slots:
-    void on_aboutButtonBox_accepted();
 
 private:
     Ui::AboutWindow *ui;
