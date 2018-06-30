@@ -131,7 +131,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="DefinePathsLabel">
+  <widget class="QLabel" name="definePathsLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -152,7 +152,7 @@
     <string>Define custom paths</string>
    </property>
   </widget>
-  <widget class="QLabel" name="EncodingSettingsLabel">
+  <widget class="QLabel" name="encodingSettingsLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -281,7 +281,7 @@
     <number>30</number>
    </property>
   </widget>
-  <widget class="QLabel" name="AudioDelayLabel">
+  <widget class="QLabel" name="audioDelayLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -310,6 +310,9 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="correctionMode">
+    <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
+   </property>
    <property name="suffix">
     <string> sec</string>
    </property>
@@ -324,6 +327,51 @@
    </property>
    <property name="singleStep">
     <double>0.025000000000000</double>
+   </property>
+   <property name="value">
+    <double>0.000000000000000</double>
+   </property>
+  </widget>
+  <widget class="QLabel" name="queueSizeLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>290</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Queue size:</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="spinBoxQueueSize">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>290</y>
+     <width>281</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="suffix">
+    <string> packets</string>
+   </property>
+   <property name="minimum">
+    <number>1</number>
+   </property>
+   <property name="maximum">
+    <number>99999</number>
+   </property>
+   <property name="value">
+    <number>128</number>
    </property>
   </widget>
  </widget>
