@@ -16,11 +16,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     shellfunctions.cpp \
-    config.cpp
+    configwindow.cpp \
+    configdata.cpp
 
 HEADERS  += mainwindow.h \
     shellfunctions.h \
-    config.h
+    configwindow.h \
+    configdata.h
 
 FORMS    += mainwindow.ui \
-    config.ui
+    configwindow.ui

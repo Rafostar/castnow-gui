@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "config.h"
+#include "configwindow.h"
 #include <QFileDialog>
 #include <QDesktopWidget>
 #include <string>
@@ -17,6 +17,7 @@ QString openFileName;
 QString message;
 
 ShellFunctions shell;
+ConfigData confData;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -93,11 +94,18 @@ void MainWindow::on_openFileButton_clicked()
 
 void MainWindow::on_castDesktopButton_clicked()
 {
-    shell.DesktopStreamingVAAPI(1600,900,30,32,0,4.5);
+    int desktopWidth = confData.desktopWidth;
+    int desktopHeight = confData.desktopHeight;
+    int desktopFramerate = confData.desktopFramerate;
+    int threadQueueSize = confData.threadQueueSize;
+    double desktopAudioDelay = confData.desktopAudioDelay;
+    double desktopBitrate = confData.desktopBitrate;
+
+    shell.DesktopStreamingVAAPI(desktopWidth,desktopHeight,desktopFramerate,threadQueueSize,desktopAudioDelay,desktopBitrate);
 }
 
 void MainWindow::on_actionConfig_triggered()
 {
-    Config *configDialog = new Config();
+    ConfigWindow *configDialog = new ConfigWindow();
     configDialog->show();
 }

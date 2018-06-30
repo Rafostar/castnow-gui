@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "shellfunctions.h"
+#include "configdata.h"
 #include <QMainWindow>
 
 namespace Ui {

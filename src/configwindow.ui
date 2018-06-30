@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Config</class>
- <widget class="QDialog" name="Config">
+ <class>ConfigWindow</class>
+ <widget class="QDialog" name="ConfigWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -332,7 +332,7 @@
   <connection>
    <sender>buttonBoxConfig</sender>
    <signal>accepted()</signal>
-   <receiver>Config</receiver>
+   <receiver>ConfigWindow</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -348,7 +348,7 @@
   <connection>
    <sender>buttonBoxConfig</sender>
    <signal>rejected()</signal>
-   <receiver>Config</receiver>
+   <receiver>ConfigWindow</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

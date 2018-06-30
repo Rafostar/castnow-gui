@@ -5,7 +5,6 @@
 class ShellFunctions
 {
 public:
-    int desktopWidth, desktopHeight;
     //---Commands---//
     std::string basicCommand = "screen -d -m -S cast_session"; // force new castnow_session
     //std::string basicCommand = ""; // it would be better to create process from code instead of screen command
@@ -15,7 +14,7 @@ public:
     const char* stopRunningScreen = "screen -S cast_session -X stuff ^C > /dev/null"; //prevent running castnow more than once
 
     void ffmpegEncode();
-    void DesktopStreamingVAAPI(int videoX, int videoY, int fr, int threadQueueSize, double audioDelay, double bitrate);
+    void DesktopStreamingVAAPI(int videoX, int videoY, int framerate, int threadQueueSize, double audioDelay, double bitrate);
 };
 
 #endif // SHELLFUNCTIONS_H
