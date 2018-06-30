@@ -109,3 +109,8 @@ void MainWindow::on_actionConfig_triggered()
     ConfigWindow *configDialog = new ConfigWindow();
     configDialog->show();
 }
+
+void MainWindow::on_actionQuit_triggered()
+{
+    close();
+}
