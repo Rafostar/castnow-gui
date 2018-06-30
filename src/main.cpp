@@ -23,7 +23,10 @@ int main(int argc, char *argv[])
     int middleWidth = (confData.desktopWidth - w.width())/2;
     int middleHeight = (confData.desktopHeight - w.height()-50)/2;
 
-    confData.ProcessConfigFile();
+    bool ConfigExists = confData.CheckConfigFile();
+
+    if(ConfigExists) confData.ReadConfigFile();
+    else confData.CreateDefaultConfigFile();
 
     w.move(middleWidth,middleHeight);
     w.show();

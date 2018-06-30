@@ -13,7 +13,11 @@ public:
 
     static double desktopAudioDelay, desktopBitrate;
 
-    bool ProcessConfigFile();
+    bool CheckConfigFile();
+
+    void CreateDefaultConfigFile();
+
+    void ReadConfigFile();
 };
 
 #endif // CONFIGDATA_H

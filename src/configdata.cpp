@@ -9,7 +9,9 @@
 
 using namespace std;
 
-// ### DEFAULT VALUES ### //
+string configFilePath;
+
+// ### CURRENT VALUES ### //
 string ConfigData::castnowPath = "castnow";
 string ConfigData::ffmpegPath = "ffmpeg";
 int ConfigData::desktopWidth;
@@ -19,12 +21,27 @@ double ConfigData::desktopBitrate = 4;
 double ConfigData::desktopAudioDelay = 0;
 int ConfigData::threadQueueSize = 128;
 
-bool ConfigData::ProcessConfigFile()
+// ### STORE DEFAULT VALUES ### //
+const string defaultCastnowPath = ConfigData::castnowPath;
+const string defaultffmpegPath = ConfigData::ffmpegPath;
+const int defaultDesktopFramerate = ConfigData::desktopFramerate;
+const double defaultDesktopBitrate = ConfigData::desktopBitrate;
+const double defaultDesktopAudioDelay = ConfigData::desktopAudioDelay;
+const int defaultThreadQueueSize = ConfigData::threadQueueSize;
+
+bool ConfigData::CheckConfigFile()
 {
-    string configFilePath = "/home/";
+    configFilePath = "/home/";
     configFilePath += getlogin();
     configFilePath += "/.config/castnow-gui/castnow-gui.cfg";
 
+    ifstream configFile(configFilePath);
+    configFile.close();
+    return (bool)configFile;
+}
+
+void ConfigData::ReadConfigFile()
+{
     ifstream configFile;
     string configLine;
     configFile.open(configFilePath);
@@ -48,5 +65,19 @@ bool ConfigData::ProcessConfigFile()
             }
         }
     }
+    configFile.close();
+}
+
+void ConfigData::CreateDefaultConfigFile()
+{
+    const char* createConfigDir = "mkdir -p ~/.config/castnow-gui";
+    system(createConfigDir);
+    ofstream configFile(configFilePath);
+    configFile << "castnowPath=" << defaultCastnowPath << endl
+               << "ffmpegPath=" << defaultffmpegPath << endl
+               << "desktopFramerate=" << defaultDesktopFramerate << endl
+               << "desktopBitrate=" << defaultDesktopBitrate << endl
+               << "desktopAudioDelay=" << defaultDesktopAudioDelay << endl
+               << "threadQueueSize=" << defaultThreadQueueSize << endl;
     configFile.close();
 }
