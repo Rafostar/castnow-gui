@@ -9,14 +9,15 @@
 
 using namespace std;
 
+// ### DEFAULT VALUES ### //
 string ConfigData::castnowPath = "castnow";
 string ConfigData::ffmpegPath = "ffmpeg";
 int ConfigData::desktopWidth;
 int ConfigData::desktopHeight;
 int ConfigData::desktopFramerate = 30;
+double ConfigData::desktopBitrate = 4;
+double ConfigData::desktopAudioDelay = 0;
 int ConfigData::threadQueueSize = 128;
-double ConfigData::desktopAudioDelay = 0.1;
-double ConfigData::desktopBitrate = 3;
 
 bool ConfigData::ProcessConfigFile()
 {
@@ -35,13 +36,16 @@ bool ConfigData::ProcessConfigFile()
 
         if(getline(currentLine, configParamName, '='))
         {
-            cout << "Parameter is:" << configParamName;
             string configParamValue;
             if(getline(currentLine, configParamValue))
             {
-                cout << ", value is:" << configParamValue << endl;
+                if(configParamName == "castnowPath") castnowPath = configParamValue;
+                else if(configParamName == "ffmpegPath") ffmpegPath = configParamValue;
+                else if(configParamName == "desktopFramerate") desktopFramerate = stoi(configParamValue);
+                else if(configParamName == "desktopBitrate") desktopBitrate = stod(configParamValue);
+                else if(configParamName == "desktopAudioDelay") desktopAudioDelay = stod(configParamValue);
+                else if(configParamName == "threadQueueSize") threadQueueSize = stoi(configParamValue);
             }
-          //Need to store values here
         }
     }
     configFile.close();

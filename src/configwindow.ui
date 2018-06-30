@@ -136,7 +136,7 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>191</width>
+     <width>381</width>
      <height>21</height>
     </rect>
    </property>
@@ -157,7 +157,7 @@
     <rect>
      <x>10</x>
      <y>130</y>
-     <width>161</width>
+     <width>381</width>
      <height>41</height>
     </rect>
    </property>
@@ -170,7 +170,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Encoding settings</string>
+    <string>Desktop streaming settings</string>
    </property>
   </widget>
   <widget class="QLabel" name="bitrateLabel">
@@ -236,7 +236,7 @@
     <double>0.100000000000000</double>
    </property>
    <property name="value">
-    <double>5.000000000000000</double>
+    <double>4.000000000000000</double>
    </property>
   </widget>
   <widget class="QLabel" name="framerateLabel">
@@ -320,10 +320,10 @@
     <number>3</number>
    </property>
    <property name="minimum">
-    <double>-10.000000000000000</double>
+    <double>-5.000000000000000</double>
    </property>
    <property name="maximum">
-    <double>10.000000000000000</double>
+    <double>5.000000000000000</double>
    </property>
    <property name="singleStep">
     <double>0.025000000000000</double>

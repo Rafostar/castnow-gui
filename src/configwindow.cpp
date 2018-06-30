@@ -9,13 +9,13 @@
 
 using namespace std;
 
-QString framerateInfoText = "Sets the number of frames, that are displayed in one second of video\n"
+QString framerateInfoText = "Sets the number of frames, that are displayed in one second of video.\n"
                             "Raising this value increases playback smoothness.\n"
                             "Lower the value if you have weak CPU.";
 
-QString bitrateInfoText = "Sets the video bitrate limit to a certain range\n"
+QString bitrateInfoText = "Sets the video bitrate limit.\n"
                           "Raising this value increases video quality.\n"
-                          "Lower the value if you are experiancing lags.";
+                          "Lower the value if you are experiencing lags.";
 
 QString audioOffsetText = "Sets the audio time offset relative to video.\n"
                           "Can be either positive or negative value.\n"
