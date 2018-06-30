@@ -65,7 +65,7 @@ void MainWindow::on_streamButton_clicked()
     if(checkFilePath() == 0)
     {
         stringstream ss;
-        ss << shell.basicCommand << " " << shell.castnowPath << " '" << filePath << "' " << shell.extraCommands;
+        ss << shell.basicCommand << " " << confData.castnowPath << " '" << filePath << "' " << shell.extraCommands;
         string tmp = ss.str();
         const char* castCommand = tmp.c_str();
 

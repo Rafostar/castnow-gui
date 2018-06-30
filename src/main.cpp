@@ -1,10 +1,10 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include <QTimer>
+//#include <QTimer>
 #include <QDesktopWidget>
-#include <string>
-#include <sstream>
-#include <unistd.h>
+//#include <string>
+//#include <sstream>
+//#include <unistd.h>
 
 using namespace std;
 

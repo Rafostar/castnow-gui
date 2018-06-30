@@ -1,4 +1,5 @@
 #include "shellfunctions.h"
+#include "configdata.h"
 #include <QFileDialog>
 #include <string>
 #include <sstream>
@@ -7,6 +8,8 @@
 #include <fstream>
 
 using namespace std;
+
+ConfigData confData2;
 
 void ffmpegEncode()
 {
@@ -23,7 +26,7 @@ void ShellFunctions::DesktopStreamingVAAPI(int videoX, int videoY, int framerate
     system(stopRunningScreen);
 
     stringstream ss;
-    ss << ffmpegPath << " -ss " << startDelay << " -video_size " << videoX << "x" << videoY << " -framerate " << framerate
+    ss << confData2.ffmpegPath << " -ss " << startDelay << " -video_size " << videoX << "x" << videoY << " -framerate " << framerate
        << " -f x11grab -thread_queue_size " << threadQueueSize << " -i :0.0 -itsoffset " << totalDelay << " -f alsa -thread_queue_size " << threadQueueSize
        << " -ac 2 -i default -vaapi_device ''/dev/dri/renderD128'' -vf 'format=nv12,hwupload' -c:v h264_vaapi -b:v " << bitrate
        << "M -level:v 4.1 -c:a flac -f matroska - | castnow --quiet - &";

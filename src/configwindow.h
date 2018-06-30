@@ -15,6 +15,10 @@ public:
     explicit ConfigWindow(QWidget *parent = 0);
     ~ConfigWindow();
 
+private slots:
+
+    void on_doubleSpinBoxOffset_valueChanged(const QString &arg1);
+
 private:
     Ui::ConfigWindow *ui;
 };

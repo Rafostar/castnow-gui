@@ -3,6 +3,8 @@
 
 using namespace std;
 
+string ConfigData::castnowPath;
+string ConfigData::ffmpegPath;
 int ConfigData::desktopWidth;
 int ConfigData::desktopHeight;
 int ConfigData::desktopFramerate;
