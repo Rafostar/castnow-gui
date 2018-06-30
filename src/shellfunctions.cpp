@@ -27,12 +27,12 @@ void ShellFunctions::DesktopStreamingVAAPI(int videoX, int videoY, int framerate
 
     stringstream ss;
     ss << confDataSF.ffmpegPath << " -ss " << startDelay << " -video_size " << videoX << "x" << videoY << " -framerate " << framerate
-       << " -f x11grab -thread_queue_size " << threadQueueSize << " -i :0.0 -f alsa -thread_queue_size " << threadQueueSize
-       << " -ac 2 -i default -itsoffset " << totalDelay << " -vaapi_device '/dev/dri/renderD128' -vf 'format=nv12,hwupload' -c:v h264_vaapi -level:v 4.1 -b:v " << bitrate
+       << " -f x11grab -thread_queue_size " << threadQueueSize << " -i :0.0 -f alsa -thread_queue_size " << threadQueueSize << " -ac 2 -itsoffset " << totalDelay
+       << " -i default -vaapi_device '/dev/dri/renderD128' -vf 'format=nv12,hwupload' -c:v h264_vaapi -level:v 4.1 -b:v " << bitrate
        << "M -c:a flac -f matroska - | " << confDataSF.castnowPath << " --quiet - &";
 
     string tmp = ss.str();
-    cout << "Running:" << tmp;
+    cout << "Running: " << tmp;
     const char* castDesktop = tmp.c_str();
     //system(castDesktop);
 }
