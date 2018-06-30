@@ -9,7 +9,7 @@
 
 using namespace std;
 
-ConfigData confData2;
+ConfigData confDataSF;
 
 void ffmpegEncode()
 {
@@ -26,12 +26,13 @@ void ShellFunctions::DesktopStreamingVAAPI(int videoX, int videoY, int framerate
     system(stopRunningScreen);
 
     stringstream ss;
-    ss << confData2.ffmpegPath << " -ss " << startDelay << " -video_size " << videoX << "x" << videoY << " -framerate " << framerate
+    ss << confDataSF.ffmpegPath << " -ss " << startDelay << " -video_size " << videoX << "x" << videoY << " -framerate " << framerate
        << " -f x11grab -thread_queue_size " << threadQueueSize << " -i :0.0 -itsoffset " << totalDelay << " -f alsa -thread_queue_size " << threadQueueSize
-       << " -ac 2 -i default -vaapi_device ''/dev/dri/renderD128'' -vf 'format=nv12,hwupload' -c:v h264_vaapi -b:v " << bitrate
-       << "M -level:v 4.1 -c:a flac -f matroska - | castnow --quiet - &";
+       << " -ac 2 -i default -vaapi_device '/dev/dri/renderD128' -vf 'format=nv12,hwupload' -c:v h264_vaapi -level:v 4.1 -b:v " << bitrate
+       << "M -c:a flac -f matroska - | castnow --quiet - &";
 
     string tmp = ss.str();
+    cout << "Running:" << tmp;
     const char* castDesktop = tmp.c_str();
-    system(castDesktop);
+    //system(castDesktop);
 }

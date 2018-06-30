@@ -17,8 +17,8 @@ string filePath;
 QString openFileName;
 QString message;
 
-ShellFunctions shell;
-ConfigData confData;
+ShellFunctions shellMW;
+ConfigData confDataMW;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -66,11 +66,11 @@ void MainWindow::on_streamButton_clicked()
     if(checkFilePath() == 0)
     {
         stringstream ss;
-        ss << shell.basicCommand << " " << confData.castnowPath << " '" << filePath << "' " << shell.extraCommands;
+        ss << shellMW.basicCommand << " " << confDataMW.castnowPath << " '" << filePath << "' " << shellMW.extraCommands;
         string tmp = ss.str();
         const char* castCommand = tmp.c_str();
 
-        system(shell.stopRunningScreen); //must be here to stop screen session after reopening castnow-gui
+        system(shellMW.stopRunningScreen); //must be here to stop screen session after reopening castnow-gui
         system(castCommand);
         statusBarCastingMsg();
     }
@@ -95,14 +95,14 @@ void MainWindow::on_openFileButton_clicked()
 
 void MainWindow::on_castDesktopButton_clicked()
 {
-    int desktopWidth = confData.desktopWidth;
-    int desktopHeight = confData.desktopHeight;
-    int desktopFramerate = confData.desktopFramerate;
-    int threadQueueSize = confData.threadQueueSize;
-    double desktopAudioDelay = confData.desktopAudioDelay;
-    double desktopBitrate = confData.desktopBitrate;
+    int desktopWidth = confDataMW.desktopWidth;
+    int desktopHeight = confDataMW.desktopHeight;
+    int desktopFramerate = confDataMW.desktopFramerate;
+    int threadQueueSize = confDataMW.threadQueueSize;
+    double desktopAudioDelay = confDataMW.desktopAudioDelay;
+    double desktopBitrate = confDataMW.desktopBitrate;
 
-    shell.DesktopStreamingVAAPI(desktopWidth,desktopHeight,desktopFramerate,threadQueueSize,desktopAudioDelay,desktopBitrate);
+    shellMW.DesktopStreamingVAAPI(desktopWidth,desktopHeight,desktopFramerate,threadQueueSize,desktopAudioDelay,desktopBitrate);
 }
 
 void MainWindow::on_actionConfig_triggered()
