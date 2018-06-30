@@ -12,6 +12,8 @@ public:
     static int desktopWidth, desktopHeight, desktopFramerate, threadQueueSize;
 
     static double desktopAudioDelay, desktopBitrate;
+
+    bool ProcessConfigFile();
 };
 
 #endif // CONFIGDATA_H
