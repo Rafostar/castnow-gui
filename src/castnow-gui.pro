@@ -17,12 +17,15 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     shellfunctions.cpp \
     configwindow.cpp \
-    configdata.cpp
+    configdata.cpp \
+    aboutwindow.cpp
 
 HEADERS  += mainwindow.h \
     shellfunctions.h \
     configwindow.h \
-    configdata.h
+    configdata.h \
+    aboutwindow.h
 
 FORMS    += mainwindow.ui \
-    configwindow.ui
+    configwindow.ui \
+    aboutwindow.ui

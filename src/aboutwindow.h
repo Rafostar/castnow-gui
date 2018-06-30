@@ -15,6 +15,9 @@ public:
     explicit AboutWindow(QWidget *parent = 0);
     ~AboutWindow();
 
+private slots:
+    void on_aboutButtonBox_accepted();
+
 private:
     Ui::AboutWindow *ui;
 };
