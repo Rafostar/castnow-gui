@@ -1,6 +1,7 @@
 #include "configwindow.h"
 #include "ui_configwindow.h"
 #include "configdata.h"
+#include <QPushButton>
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -41,6 +42,8 @@ ConfigWindow::ConfigWindow(QWidget *parent) :
     ui->doubleSpinBoxBitrate->setToolTip(bitrateInfoText);
     ui->doubleSpinBoxOffset->setToolTip(audioOffsetText);
     ui->spinBoxQueueSize->setToolTip(queueSizeInfoText);
+
+
 }
 
 ConfigWindow::~ConfigWindow()
@@ -58,20 +61,36 @@ void ConfigWindow::on_doubleSpinBoxOffset_valueChanged(const QString &arg1)
 
 void ConfigWindow::UpdateConfigValues()
 {
-    if(confDataCW.ffmpegPath != "ffmpeg")
-    {
-        QString ffmpegPath = QString::fromStdString(confDataCW.ffmpegPath);
-        ui->ffmpegEditPath->setText(ffmpegPath);
-    }
-
     if(confDataCW.castnowPath != "castnow")
     {
         QString castnowPath = QString::fromStdString(confDataCW.castnowPath);
         ui->castnowEditPath->setText(castnowPath);
     }
 
+    if(confDataCW.ffmpegPath != "ffmpeg")
+    {
+        QString ffmpegPath = QString::fromStdString(confDataCW.ffmpegPath);
+        ui->ffmpegEditPath->setText(ffmpegPath);
+    }
+
     ui->spinBoxFramerate->setValue(confDataCW.desktopFramerate);
     ui->doubleSpinBoxBitrate->setValue(confDataCW.desktopBitrate);
     ui->doubleSpinBoxOffset->setValue(confDataCW.desktopAudioDelay);
     ui->spinBoxQueueSize->setValue(confDataCW.threadQueueSize);
+}
+
+void ConfigWindow::on_buttonBoxConfig_clicked(QAbstractButton *button)
+{
+
+    if((QPushButton *)button == ui->buttonBoxConfig->button(QDialogButtonBox::RestoreDefaults))
+    {
+        ui->spinBoxFramerate->setValue(confDataCW.defaultDesktopFramerate);
+        ui->doubleSpinBoxBitrate->setValue(confDataCW.defaultDesktopBitrate);
+        ui->doubleSpinBoxOffset->setValue(confDataCW.defaultDesktopAudioDelay);
+        ui->spinBoxQueueSize->setValue(confDataCW.defaultThreadQueueSize);
+    }
+    else if((QPushButton *)button == ui->buttonBoxConfig->button(QDialogButtonBox::Save))
+    {
+
+    }
 }

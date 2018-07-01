@@ -2,6 +2,7 @@
 #define CONFIGWINDOW_H
 
 #include <QDialog>
+#include <QAbstractButton>
 
 namespace Ui {
 class ConfigWindow;
@@ -20,6 +21,8 @@ private slots:
     void on_doubleSpinBoxOffset_valueChanged(const QString &arg1);
 
     void UpdateConfigValues();
+
+    void on_buttonBoxConfig_clicked(QAbstractButton *button);
 
 private:
 

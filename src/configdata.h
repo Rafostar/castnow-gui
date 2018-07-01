@@ -9,9 +9,15 @@ class ConfigData
 public:
     static std::string castnowPath, ffmpegPath;
 
+    static std::string defaultCastnowPath, defaultFfmpegPath;
+
     static int desktopWidth, desktopHeight, desktopFramerate, threadQueueSize;
 
+    static int defaultDesktopFramerate, defaultThreadQueueSize;
+
     static double desktopAudioDelay, desktopBitrate;
+
+    static double defaultDesktopAudioDelay, defaultDesktopBitrate;
 
     bool CheckConfigFile();
 

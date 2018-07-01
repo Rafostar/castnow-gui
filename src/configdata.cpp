@@ -12,23 +12,23 @@ using namespace std;
 
 string configFilePath;
 
-// ### CURRENT VALUES ### //
-string ConfigData::castnowPath = "castnow";
-string ConfigData::ffmpegPath = "ffmpeg";
+// ### DEFAULT VALUES ### //
+string ConfigData::defaultCastnowPath = "castnow";
+string ConfigData::defaultFfmpegPath = "ffmpeg";
+int ConfigData::defaultDesktopFramerate = 30;
+double ConfigData::defaultDesktopBitrate = 4;
+double ConfigData::defaultDesktopAudioDelay = 0;
+int ConfigData::defaultThreadQueueSize = 128;
+
+// ### CURRENT VALUES STORAGE ### //
 int ConfigData::desktopWidth;
 int ConfigData::desktopHeight;
-int ConfigData::desktopFramerate = 30;
-double ConfigData::desktopBitrate = 4;
-double ConfigData::desktopAudioDelay = 0;
-int ConfigData::threadQueueSize = 128;
-
-// ### STORE DEFAULT VALUES ### //
-const string defaultCastnowPath = ConfigData::castnowPath;
-const string defaultffmpegPath = ConfigData::ffmpegPath;
-const int defaultDesktopFramerate = ConfigData::desktopFramerate;
-const double defaultDesktopBitrate = ConfigData::desktopBitrate;
-const double defaultDesktopAudioDelay = ConfigData::desktopAudioDelay;
-const int defaultThreadQueueSize = ConfigData::threadQueueSize;
+string ConfigData::castnowPath = ConfigData::castnowPath;
+string ConfigData::ffmpegPath = ConfigData::ffmpegPath;
+int ConfigData::desktopFramerate = ConfigData::desktopFramerate;
+double ConfigData::desktopBitrate = ConfigData::desktopBitrate;
+double ConfigData::desktopAudioDelay = ConfigData::desktopAudioDelay;
+int ConfigData::threadQueueSize = ConfigData::threadQueueSize;
 
 bool ConfigData::CheckConfigFile()
 {
@@ -75,7 +75,7 @@ void ConfigData::CreateDefaultConfigFile()
     system(createConfigDir);
     ofstream configFile(configFilePath);
     configFile << "castnowPath=" << defaultCastnowPath << endl
-               << "ffmpegPath=" << defaultffmpegPath << endl
+               << "ffmpegPath=" << defaultFfmpegPath << endl
                << "desktopFramerate=" << defaultDesktopFramerate << endl
                << "desktopBitrate=" << defaultDesktopBitrate << endl
                << "desktopAudioDelay=" << defaultDesktopAudioDelay << endl
