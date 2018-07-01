@@ -1,4 +1,5 @@
 #include "configdata.h"
+#include "configwindow.h"
 #include <QDesktopWidget>
 #include <iostream>
 #include <string>
@@ -80,4 +81,12 @@ void ConfigData::CreateDefaultConfigFile()
                << "desktopAudioDelay=" << defaultDesktopAudioDelay << endl
                << "threadQueueSize=" << defaultThreadQueueSize << endl;
     configFile.close();
+}
+
+void ConfigData::ProcessConfigFile()
+{
+    bool ConfigExists = CheckConfigFile();
+
+    if(ConfigExists) ReadConfigFile();
+    else CreateDefaultConfigFile();
 }

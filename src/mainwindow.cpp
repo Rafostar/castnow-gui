@@ -107,7 +107,7 @@ void MainWindow::on_castDesktopButton_clicked()
 
 void MainWindow::on_actionOpenFile_triggered()
 {
-    MainWindow::on_openFileButton_clicked();
+    on_openFileButton_clicked();
 }
 
 void MainWindow::on_actionConfig_triggered()

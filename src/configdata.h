@@ -18,6 +18,8 @@ public:
     void CreateDefaultConfigFile();
 
     void ReadConfigFile();
+
+    void ProcessConfigFile();
 };
 
 #endif // CONFIGDATA_H

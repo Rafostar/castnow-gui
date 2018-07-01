@@ -1,5 +1,6 @@
 #include "configwindow.h"
 #include "ui_configwindow.h"
+#include "configdata.h"
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -8,6 +9,8 @@
 #include <fstream>
 
 using namespace std;
+
+ConfigData confDataCW;
 
 QString framerateInfoText = "Sets the number of frames, that are displayed in one second of video.\n"
                             "Raising this value increases playback smoothness.\n"
@@ -29,7 +32,10 @@ ConfigWindow::ConfigWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ConfigWindow)
 {
+    confDataCW.ProcessConfigFile();
     ui->setupUi(this);
+
+    UpdateConfigValues();
 
     ui->spinBoxFramerate->setToolTip(framerateInfoText);
     ui->doubleSpinBoxBitrate->setToolTip(bitrateInfoText);
@@ -48,4 +54,24 @@ void ConfigWindow::on_doubleSpinBoxOffset_valueChanged(const QString &arg1)
     {
         ui->doubleSpinBoxOffset->setValue(0.000);
     }
+}
+
+void ConfigWindow::UpdateConfigValues()
+{
+    if(confDataCW.ffmpegPath != "ffmpeg")
+    {
+        QString ffmpegPath = QString::fromStdString(confDataCW.ffmpegPath);
+        ui->ffmpegEditPath->setText(ffmpegPath);
+    }
+
+    if(confDataCW.castnowPath != "castnow")
+    {
+        QString castnowPath = QString::fromStdString(confDataCW.castnowPath);
+        ui->castnowEditPath->setText(castnowPath);
+    }
+
+    ui->spinBoxFramerate->setValue(confDataCW.desktopFramerate);
+    ui->doubleSpinBoxBitrate->setValue(confDataCW.desktopBitrate);
+    ui->doubleSpinBoxOffset->setValue(confDataCW.desktopAudioDelay);
+    ui->spinBoxQueueSize->setValue(confDataCW.threadQueueSize);
 }

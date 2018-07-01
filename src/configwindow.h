@@ -19,7 +19,10 @@ private slots:
 
     void on_doubleSpinBoxOffset_valueChanged(const QString &arg1);
 
+    void UpdateConfigValues();
+
 private:
+
     Ui::ConfigWindow *ui;
 };
 
