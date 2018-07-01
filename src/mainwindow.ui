@@ -121,7 +121,6 @@
      <string>File</string>
     </property>
     <addaction name="actionOpenFile"/>
-    <addaction name="actionOpenFolder"/>
     <addaction name="actionQuit"/>
    </widget>
    <addaction name="menuFile"/>
@@ -141,11 +140,6 @@
   <action name="actionOpenFile">
    <property name="text">
     <string>Open file</string>
-   </property>
-  </action>
-  <action name="actionOpenFolder">
-   <property name="text">
-    <string>Open folder</string>
    </property>
   </action>
   <action name="actionQuit">

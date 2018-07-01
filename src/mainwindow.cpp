@@ -105,19 +105,24 @@ void MainWindow::on_castDesktopButton_clicked()
     shellMW.DesktopStreamingVAAPI(desktopWidth,desktopHeight,desktopFramerate,threadQueueSize,desktopAudioDelay,desktopBitrate);
 }
 
+void MainWindow::on_actionOpenFile_triggered()
+{
+    MainWindow::on_openFileButton_clicked();
+}
+
 void MainWindow::on_actionConfig_triggered()
 {
     ConfigWindow *configDialog = new ConfigWindow;
     configDialog->show();
 }
 
-void MainWindow::on_actionQuit_triggered()
-{
-    close();
-}
-
 void MainWindow::on_actionAbout_triggered()
 {
     AboutWindow *aboutDialog = new AboutWindow;
     aboutDialog->show();
+}
+
+void MainWindow::on_actionQuit_triggered()
+{
+    close();
 }
