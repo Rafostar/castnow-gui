@@ -23,12 +23,12 @@ int ConfigData::defaultThreadQueueSize = 128;
 // ### CURRENT VALUES STORAGE ### //
 int ConfigData::desktopWidth;
 int ConfigData::desktopHeight;
-string ConfigData::castnowPath = ConfigData::castnowPath;
-string ConfigData::ffmpegPath = ConfigData::ffmpegPath;
-int ConfigData::desktopFramerate = ConfigData::desktopFramerate;
-double ConfigData::desktopBitrate = ConfigData::desktopBitrate;
-double ConfigData::desktopAudioDelay = ConfigData::desktopAudioDelay;
-int ConfigData::threadQueueSize = ConfigData::threadQueueSize;
+string ConfigData::castnowPath = ConfigData::defaultCastnowPath;
+string ConfigData::ffmpegPath = ConfigData::defaultFfmpegPath;
+int ConfigData::desktopFramerate = ConfigData::defaultDesktopFramerate;
+double ConfigData::desktopBitrate = ConfigData::defaultDesktopBitrate;
+double ConfigData::desktopAudioDelay = ConfigData::defaultDesktopAudioDelay;
+int ConfigData::threadQueueSize = ConfigData::defaultThreadQueueSize;
 
 bool ConfigData::CheckConfigFile()
 {
@@ -80,6 +80,18 @@ void ConfigData::CreateDefaultConfigFile()
                << "desktopBitrate=" << defaultDesktopBitrate << endl
                << "desktopAudioDelay=" << defaultDesktopAudioDelay << endl
                << "threadQueueSize=" << defaultThreadQueueSize << endl;
+    configFile.close();
+}
+
+void ConfigData::SaveConfigurationToFile()
+{
+    ofstream configFile(configFilePath);
+    configFile << "castnowPath=" << castnowPath << endl
+               << "ffmpegPath=" << ffmpegPath << endl
+               << "desktopFramerate=" << desktopFramerate << endl
+               << "desktopBitrate=" << desktopBitrate << endl
+               << "desktopAudioDelay=" << desktopAudioDelay << endl
+               << "threadQueueSize=" << threadQueueSize << endl;
     configFile.close();
 }
 

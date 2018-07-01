@@ -36,7 +36,7 @@ ConfigWindow::ConfigWindow(QWidget *parent) :
     confDataCW.ProcessConfigFile();
     ui->setupUi(this);
 
-    UpdateConfigValues();
+    UpdateConfigWindowValues();
 
     ui->spinBoxFramerate->setToolTip(framerateInfoText);
     ui->doubleSpinBoxBitrate->setToolTip(bitrateInfoText);
@@ -59,7 +59,7 @@ void ConfigWindow::on_doubleSpinBoxOffset_valueChanged(const QString &arg1)
     }
 }
 
-void ConfigWindow::UpdateConfigValues()
+void ConfigWindow::UpdateConfigWindowValues()
 {
     if(confDataCW.castnowPath != "castnow")
     {
@@ -79,9 +79,37 @@ void ConfigWindow::UpdateConfigValues()
     ui->spinBoxQueueSize->setValue(confDataCW.threadQueueSize);
 }
 
+void ConfigWindow::UpdateUsedValues()
+{
+    string castnowEditPathText = ui->castnowEditPath->text().toUtf8().constData();
+    string ffmpegEditPathText = ui->ffmpegEditPath->text().toUtf8().constData();
+
+    if(castnowEditPathText != "")
+    {
+        confDataCW.castnowPath = ui->castnowEditPath->text().toUtf8().constData();
+    }
+    else
+    {
+        confDataCW.castnowPath = confDataCW.defaultCastnowPath;
+    }
+
+    if(ffmpegEditPathText != "")
+    {
+        confDataCW.ffmpegPath = ui->ffmpegEditPath->text().toUtf8().constData();
+    }
+    else
+    {
+        confDataCW.ffmpegPath = confDataCW.defaultFfmpegPath;
+    }
+
+    confDataCW.desktopFramerate = ui->spinBoxFramerate->value();
+    confDataCW.desktopBitrate = ui->doubleSpinBoxBitrate->value();
+    confDataCW.desktopAudioDelay = ui->doubleSpinBoxOffset->value();
+    confDataCW.threadQueueSize = ui->spinBoxQueueSize->value();
+}
+
 void ConfigWindow::on_buttonBoxConfig_clicked(QAbstractButton *button)
 {
-
     if((QPushButton *)button == ui->buttonBoxConfig->button(QDialogButtonBox::RestoreDefaults))
     {
         ui->spinBoxFramerate->setValue(confDataCW.defaultDesktopFramerate);
@@ -91,6 +119,7 @@ void ConfigWindow::on_buttonBoxConfig_clicked(QAbstractButton *button)
     }
     else if((QPushButton *)button == ui->buttonBoxConfig->button(QDialogButtonBox::Save))
     {
-
+        UpdateUsedValues();
+        confDataCW.SaveConfigurationToFile();
     }
 }

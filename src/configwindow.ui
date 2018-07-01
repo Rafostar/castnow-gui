@@ -149,7 +149,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Define custom paths</string>
+    <string>Custom paths</string>
    </property>
   </widget>
   <widget class="QLabel" name="encodingSettingsLabel">

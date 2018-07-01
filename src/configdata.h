@@ -26,6 +26,8 @@ public:
     void ReadConfigFile();
 
     void ProcessConfigFile();
+
+    void SaveConfigurationToFile();
 };
 
 #endif // CONFIGDATA_H

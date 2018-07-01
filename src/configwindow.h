@@ -20,9 +20,11 @@ private slots:
 
     void on_doubleSpinBoxOffset_valueChanged(const QString &arg1);
 
-    void UpdateConfigValues();
+    void UpdateConfigWindowValues();
 
     void on_buttonBoxConfig_clicked(QAbstractButton *button);
+
+    void UpdateUsedValues();
 
 private:
 
