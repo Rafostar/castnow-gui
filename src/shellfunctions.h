@@ -13,8 +13,10 @@ public:
     //std::string castnowPath = "castnow";
     const char* stopRunningScreen = "screen -S cast_session -X stuff ^C > /dev/null"; //prevent running castnow more than once
 
-    void ffmpegEncode();
-    void DesktopStreamingVAAPI(int videoX, int videoY, int framerate, int threadQueueSize, double audioDelay, double bitrate);
+    void CreateProcessPipe(const char* systemCommand);
+    void StopProcessPipe();
+    void SendKeyToProcessPipe(char sendKey[]);
+    void DesktopStreamingVAAPI();
 };
 
 #endif // SHELLFUNCTIONS_H
