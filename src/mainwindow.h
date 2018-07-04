@@ -22,13 +22,15 @@ public:
     void statusBarError();
 
 private slots:
-    void on_streamButton_clicked();
-
     void on_openFileButton_clicked();
 
-    void on_castDesktopStartButton_clicked();
+    void on_castFileButton_clicked();
 
-    void on_castDesktopStopButton_clicked();
+    void on_castDesktopButton_clicked();
+
+    void on_stopCastingButton_clicked();
+
+    void enableCastingButtons(bool state);
 
     void on_actionConfig_triggered();
 

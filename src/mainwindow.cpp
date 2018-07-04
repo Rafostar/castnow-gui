@@ -48,6 +48,13 @@ int MainWindow::checkFilePath()
     }
 }
 
+void MainWindow::enableCastingButtons(bool state)
+{
+    ui->castFileButton->setEnabled(state);
+    ui->castDesktopButton->setEnabled(state);
+    ui->stopCastingButton->setEnabled(!state);
+}
+
 void MainWindow::statusBarCastingMsg()
 {
     string baseFilename = filePath.substr(filePath.find_last_of("/\\") + 1);
@@ -61,17 +68,13 @@ void MainWindow::statusBarError()
     ui->statusBar->showMessage("Empty path to file!");
 }
 
-void MainWindow::on_streamButton_clicked()
+void MainWindow::on_castFileButton_clicked()
 {
     if(checkFilePath() == 0)
     {
-        //stringstream ss;
-        //ss << shellMW.basicCommand << " " << confDataMW.castnowPath << " '" << filePath << "' " << shellMW.extraCommands;
-        //string tmp = ss.str();
-        //const char* castCommand = tmp.c_str();
-
         //system(shellMW.stopRunningScreen); //must be here to stop screen session after reopening castnow-gui
-        //system(castCommand);
+
+        enableCastingButtons(false);
         statusBarCastingMsg();
         shellMW.FileStreamingVAAPI(filePath);
     }
@@ -94,16 +97,18 @@ void MainWindow::on_openFileButton_clicked()
     }
 }
 
-void MainWindow::on_castDesktopStartButton_clicked()
+void MainWindow::on_castDesktopButton_clicked()
 {
+    enableCastingButtons(false);
+    ui->statusBar->showMessage("Started casting desktop");
     shellMW.DesktopStreamingVAAPI();
-    ui->castDesktopStartButton->setEnabled(false);
 }
 
-void MainWindow::on_castDesktopStopButton_clicked()
+void MainWindow::on_stopCastingButton_clicked()
 {
     ui->statusBar->showMessage("Streaming is stopping. Please wait...");
     shellMW.StopProcessPipe();
+    enableCastingButtons(true);
     ui->statusBar->showMessage("Streaming stopped");
 }
 

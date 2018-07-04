@@ -57,7 +57,7 @@
      <string>Open file</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="streamButton">
+   <widget class="QPushButton" name="castFileButton">
     <property name="geometry">
      <rect>
       <x>281</x>
@@ -86,7 +86,7 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="castDesktopStartButton">
+   <widget class="QPushButton" name="castDesktopButton">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -99,7 +99,10 @@
      <string>Cast Desktop</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="castDesktopStopButton">
+   <widget class="QPushButton" name="stopCastingButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>160</x>
