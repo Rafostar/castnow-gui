@@ -65,14 +65,15 @@ void MainWindow::on_streamButton_clicked()
 {
     if(checkFilePath() == 0)
     {
-        stringstream ss;
-        ss << shellMW.basicCommand << " " << confDataMW.castnowPath << " '" << filePath << "' " << shellMW.extraCommands;
-        string tmp = ss.str();
-        const char* castCommand = tmp.c_str();
+        //stringstream ss;
+        //ss << shellMW.basicCommand << " " << confDataMW.castnowPath << " '" << filePath << "' " << shellMW.extraCommands;
+        //string tmp = ss.str();
+        //const char* castCommand = tmp.c_str();
 
-        system(shellMW.stopRunningScreen); //must be here to stop screen session after reopening castnow-gui
-        system(castCommand);
+        //system(shellMW.stopRunningScreen); //must be here to stop screen session after reopening castnow-gui
+        //system(castCommand);
         statusBarCastingMsg();
+        shellMW.FileStreamingVAAPI(filePath);
     }
     else
     {
@@ -101,8 +102,9 @@ void MainWindow::on_castDesktopStartButton_clicked()
 
 void MainWindow::on_castDesktopStopButton_clicked()
 {
-    //shellMW.SendKeyToProcessPipe()
+    ui->statusBar->showMessage("Streaming is stopping. Please wait...");
     shellMW.StopProcessPipe();
+    ui->statusBar->showMessage("Streaming stopped");
 }
 
 void MainWindow::on_actionOpenFile_triggered()

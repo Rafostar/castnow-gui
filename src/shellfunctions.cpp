@@ -30,7 +30,28 @@ void ShellFunctions::SendKeyToProcessPipe(char sendKey[])
 void ShellFunctions::StopProcessPipe()
 {
     SendKeyToProcessPipe(ffmpegQuit);
-    pclose(shellProcess); // returns int 0 (ffmpeg exited sucessfuly)
+    pclose(shellProcess); // returns 0 (ffmpeg exited sucessfuly)
+}
+
+void ShellFunctions::FileStreamingVAAPI(string filePath)
+{
+    int startDelay = 0; // until "play from specified time" function is implemented
+
+    stringstream ss;
+    ss << confDataSF.ffmpegPath
+       << " -hide_banner -ss " << startDelay
+       << " -i '"<< filePath << "'"
+       << " -itsoffset " << confDataSF.desktopAudioDelay
+       << " -i '"<< filePath << "'"
+       << " -map 0:v -map 1:a"
+       << " -vaapi_device '/dev/dri/renderD128' -vf 'format=nv12,hwupload' -c:v h264_vaapi -level:v 4.1 -b:v " << confDataSF.desktopBitrate
+       << "M -c:a copy -f matroska - | " << confDataSF.castnowPath << " --quiet -";
+
+    string tmp = ss.str();
+    cout << "Running: " << tmp << endl; // for debug
+    const char* castFile = tmp.c_str();
+
+    CreateProcessPipe(castFile);
 }
 
 void ShellFunctions::DesktopStreamingVAAPI()
@@ -38,12 +59,14 @@ void ShellFunctions::DesktopStreamingVAAPI()
     double startDelay = 5;
     double totalDelay = startDelay + confDataSF.desktopAudioDelay;
 
-    //system("sudo killall ffmpeg"); // Temporary (and ugly) method to stop ffmpeg
-    //system(stopRunningScreen);
-
     stringstream ss;
-    ss << confDataSF.ffmpegPath << " -ss " << startDelay << " -video_size " << confDataSF.desktopWidth << "x" << confDataSF.desktopHeight << " -framerate " << confDataSF.desktopFramerate
-       << " -f x11grab -thread_queue_size " << confDataSF.threadQueueSize << " -i :0.0 -f alsa -thread_queue_size " << confDataSF.threadQueueSize << " -ac 2 -itsoffset " << totalDelay
+    ss << confDataSF.ffmpegPath
+       << " -hide_banner -ss " << startDelay
+       << " -video_size " << confDataSF.desktopWidth << "x" << confDataSF.desktopHeight
+       << " -framerate " << confDataSF.desktopFramerate
+       << " -f x11grab -thread_queue_size " << confDataSF.threadQueueSize
+       << " -i :0.0 -f alsa -thread_queue_size " << confDataSF.threadQueueSize
+       << " -ac 2 -itsoffset " << totalDelay
        << " -i default -vaapi_device '/dev/dri/renderD128' -vf 'format=nv12,hwupload' -c:v h264_vaapi -level:v 4.1 -b:v " << confDataSF.desktopBitrate
        << "M -c:a flac -f matroska - | " << confDataSF.castnowPath << " --quiet -";
 
@@ -52,5 +75,4 @@ void ShellFunctions::DesktopStreamingVAAPI()
     const char* castDesktop = tmp.c_str();
 
     CreateProcessPipe(castDesktop);
-    //system(castDesktop);
 }
