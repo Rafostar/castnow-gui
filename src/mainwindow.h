@@ -26,7 +26,9 @@ private slots:
 
     void on_openFileButton_clicked();
 
-    void on_castDesktopButton_clicked();
+    void on_castDesktopStartButton_clicked();
+
+    void on_castDesktopStopButton_clicked();
 
     void on_actionConfig_triggered();
 

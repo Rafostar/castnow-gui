@@ -93,16 +93,16 @@ void MainWindow::on_openFileButton_clicked()
     }
 }
 
-void MainWindow::on_castDesktopButton_clicked()
+void MainWindow::on_castDesktopStartButton_clicked()
 {
-    int desktopWidth = confDataMW.desktopWidth;
-    int desktopHeight = confDataMW.desktopHeight;
-    int desktopFramerate = confDataMW.desktopFramerate;
-    int threadQueueSize = confDataMW.threadQueueSize;
-    double desktopAudioDelay = confDataMW.desktopAudioDelay;
-    double desktopBitrate = confDataMW.desktopBitrate;
+    shellMW.DesktopStreamingVAAPI();
+    ui->castDesktopStartButton->setEnabled(false);
+}
 
-    shellMW.DesktopStreamingVAAPI(desktopWidth,desktopHeight,desktopFramerate,threadQueueSize,desktopAudioDelay,desktopBitrate);
+void MainWindow::on_castDesktopStopButton_clicked()
+{
+    //shellMW.SendKeyToProcessPipe()
+    shellMW.StopProcessPipe();
 }
 
 void MainWindow::on_actionOpenFile_triggered()
