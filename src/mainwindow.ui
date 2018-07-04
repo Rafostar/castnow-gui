@@ -60,14 +60,14 @@
    <widget class="QPushButton" name="streamButton">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>310</y>
-      <width>92</width>
+      <x>281</x>
+      <y>270</y>
+      <width>111</width>
       <height>36</height>
      </rect>
     </property>
     <property name="text">
-     <string>Stream</string>
+     <string>Cast File</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="insertFilePath">
@@ -86,10 +86,10 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="castDesktopButton">
+   <widget class="QPushButton" name="castDesktopStartButton">
     <property name="geometry">
      <rect>
-      <x>151</x>
+      <x>280</x>
       <y>310</y>
       <width>111</width>
       <height>36</height>
@@ -97,6 +97,19 @@
     </property>
     <property name="text">
      <string>Cast Desktop</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="castDesktopStopButton">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>310</y>
+      <width>111</width>
+      <height>36</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Stop Casting</string>
     </property>
    </widget>
   </widget>
