@@ -15,6 +15,10 @@ string configFilePath;
 // ### DEFAULT VALUES ### //
 string ConfigData::defaultCastnowPath = "castnow";
 string ConfigData::defaultFfmpegPath = "ffmpeg";
+
+double ConfigData::defaultFileBitrate = 4;
+double ConfigData::defaultFileAudioDelay = 0;
+
 int ConfigData::defaultDesktopFramerate = 30;
 double ConfigData::defaultDesktopBitrate = 4;
 double ConfigData::defaultDesktopAudioDelay = 0;
@@ -23,8 +27,13 @@ int ConfigData::defaultThreadQueueSize = 128;
 // ### CURRENT VALUES STORAGE ### //
 int ConfigData::desktopWidth;
 int ConfigData::desktopHeight;
+
 string ConfigData::castnowPath = ConfigData::defaultCastnowPath;
 string ConfigData::ffmpegPath = ConfigData::defaultFfmpegPath;
+
+double ConfigData::fileBitrate = ConfigData::defaultFileBitrate;
+double ConfigData::fileAudioDelay = ConfigData::defaultFileAudioDelay;
+
 int ConfigData::desktopFramerate = ConfigData::defaultDesktopFramerate;
 double ConfigData::desktopBitrate = ConfigData::defaultDesktopBitrate;
 double ConfigData::desktopAudioDelay = ConfigData::defaultDesktopAudioDelay;

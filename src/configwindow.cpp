@@ -38,10 +38,10 @@ ConfigWindow::ConfigWindow(QWidget *parent) :
 
     UpdateConfigWindowValues();
 
-    ui->spinBoxFramerate->setToolTip(framerateInfoText);
-    ui->doubleSpinBoxBitrate->setToolTip(bitrateInfoText);
-    ui->doubleSpinBoxOffset->setToolTip(audioOffsetText);
-    ui->spinBoxQueueSize->setToolTip(queueSizeInfoText);
+    ui->spinBoxDesktopFramerate->setToolTip(framerateInfoText);
+    ui->doubleSpinBoxDesktopBitrate->setToolTip(bitrateInfoText);
+    ui->doubleSpinBoxDesktopOffset->setToolTip(audioOffsetText);
+    ui->spinBoxDesktopQueueSize->setToolTip(queueSizeInfoText);
 
 
 }
@@ -51,11 +51,19 @@ ConfigWindow::~ConfigWindow()
     delete ui;
 }
 
+void ConfigWindow::on_doubleSpinBoxFileOffset_valueChanged(const QString &arg1)
+{
+    if(arg1 == "-0.000 sec")
+    {
+        ui->doubleSpinBoxFileOffset->setValue(0.000);
+    }
+}
+
 void ConfigWindow::on_doubleSpinBoxOffset_valueChanged(const QString &arg1)
 {
     if(arg1 == "-0.000 sec")
     {
-        ui->doubleSpinBoxOffset->setValue(0.000);
+        ui->doubleSpinBoxDesktopOffset->setValue(0.000);
     }
 }
 
@@ -73,10 +81,10 @@ void ConfigWindow::UpdateConfigWindowValues()
         ui->ffmpegEditPath->setText(ffmpegPath);
     }
 
-    ui->spinBoxFramerate->setValue(confDataCW.desktopFramerate);
-    ui->doubleSpinBoxBitrate->setValue(confDataCW.desktopBitrate);
-    ui->doubleSpinBoxOffset->setValue(confDataCW.desktopAudioDelay);
-    ui->spinBoxQueueSize->setValue(confDataCW.threadQueueSize);
+    ui->spinBoxDesktopFramerate->setValue(confDataCW.desktopFramerate);
+    ui->doubleSpinBoxDesktopBitrate->setValue(confDataCW.desktopBitrate);
+    ui->doubleSpinBoxDesktopOffset->setValue(confDataCW.desktopAudioDelay);
+    ui->spinBoxDesktopQueueSize->setValue(confDataCW.threadQueueSize);
 }
 
 void ConfigWindow::UpdateUsedValues()
@@ -102,20 +110,20 @@ void ConfigWindow::UpdateUsedValues()
         confDataCW.ffmpegPath = confDataCW.defaultFfmpegPath;
     }
 
-    confDataCW.desktopFramerate = ui->spinBoxFramerate->value();
-    confDataCW.desktopBitrate = ui->doubleSpinBoxBitrate->value();
-    confDataCW.desktopAudioDelay = ui->doubleSpinBoxOffset->value();
-    confDataCW.threadQueueSize = ui->spinBoxQueueSize->value();
+    confDataCW.desktopFramerate = ui->spinBoxDesktopFramerate->value();
+    confDataCW.desktopBitrate = ui->doubleSpinBoxDesktopBitrate->value();
+    confDataCW.desktopAudioDelay = ui->doubleSpinBoxDesktopOffset->value();
+    confDataCW.threadQueueSize = ui->spinBoxDesktopQueueSize->value();
 }
 
 void ConfigWindow::on_buttonBoxConfig_clicked(QAbstractButton *button)
 {
     if((QPushButton *)button == ui->buttonBoxConfig->button(QDialogButtonBox::RestoreDefaults))
     {
-        ui->spinBoxFramerate->setValue(confDataCW.defaultDesktopFramerate);
-        ui->doubleSpinBoxBitrate->setValue(confDataCW.defaultDesktopBitrate);
-        ui->doubleSpinBoxOffset->setValue(confDataCW.defaultDesktopAudioDelay);
-        ui->spinBoxQueueSize->setValue(confDataCW.defaultThreadQueueSize);
+        ui->spinBoxDesktopFramerate->setValue(confDataCW.defaultDesktopFramerate);
+        ui->doubleSpinBoxDesktopBitrate->setValue(confDataCW.defaultDesktopBitrate);
+        ui->doubleSpinBoxDesktopOffset->setValue(confDataCW.defaultDesktopAudioDelay);
+        ui->spinBoxDesktopQueueSize->setValue(confDataCW.defaultThreadQueueSize);
     }
     else if((QPushButton *)button == ui->buttonBoxConfig->button(QDialogButtonBox::Save))
     {

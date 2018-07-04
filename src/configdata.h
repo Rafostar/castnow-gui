@@ -15,9 +15,9 @@ public:
 
     static int defaultDesktopFramerate, defaultThreadQueueSize;
 
-    static double desktopAudioDelay, desktopBitrate;
+    static double fileBitrate, fileAudioDelay, desktopBitrate, desktopAudioDelay;
 
-    static double defaultDesktopAudioDelay, defaultDesktopBitrate;
+    static double defaultFileAudioDelay, defaultFileBitrate, defaultDesktopAudioDelay, defaultDesktopBitrate;
 
     bool CheckConfigFile();
 

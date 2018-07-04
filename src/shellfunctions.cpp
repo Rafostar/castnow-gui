@@ -41,10 +41,10 @@ void ShellFunctions::FileStreamingVAAPI(string filePath)
     ss << confDataSF.ffmpegPath
        << " -hide_banner -ss " << startDelay
        << " -i '"<< filePath << "'"
-       << " -itsoffset " << confDataSF.desktopAudioDelay
+       << " -itsoffset " << confDataSF.fileAudioDelay
        << " -i '"<< filePath << "'"
        << " -map 0:v -map 1:a"
-       << " -vaapi_device '/dev/dri/renderD128' -vf 'format=nv12,hwupload' -c:v h264_vaapi -level:v 4.1 -b:v " << confDataSF.desktopBitrate
+       << " -vaapi_device '/dev/dri/renderD128' -vf 'format=nv12,hwupload' -c:v h264_vaapi -level:v 4.1 -b:v " << confDataSF.fileBitrate
        << "M -c:a copy -f matroska - | " << confDataSF.castnowPath << " --quiet -";
 
     string tmp = ss.str();
