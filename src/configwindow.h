@@ -17,18 +17,17 @@ public:
     ~ConfigWindow();
 
 private slots:
+    void on_doubleSpinBoxFileOffset_valueChanged(const QString &arg1);
 
-    void on_doubleSpinBoxOffset_valueChanged(const QString &arg1);
-
-    void UpdateConfigWindowValues();
+    void on_doubleSpinBoxDesktopOffset_valueChanged(const QString &arg1);
 
     void on_buttonBoxConfig_clicked(QAbstractButton *button);
+
+    void UpdateConfigWindowValues();
 
     void UpdateUsedValues();
 
     void RestoreDefaultValues();
-
-    void on_doubleSpinBoxFileOffset_valueChanged(const QString &arg1);
 
 private:
 

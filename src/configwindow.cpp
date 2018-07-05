@@ -60,7 +60,7 @@ void ConfigWindow::on_doubleSpinBoxFileOffset_valueChanged(const QString &arg1)
     }
 }
 
-void ConfigWindow::on_doubleSpinBoxOffset_valueChanged(const QString &arg1)
+void ConfigWindow::on_doubleSpinBoxDesktopOffset_valueChanged(const QString &arg1)
 {
     if(arg1 == "-0.000 sec")
     {
