@@ -6,7 +6,7 @@ castnow-gui - Qt interface for command-line chromecast player
 ### Requirements
 Here is a list of required programs that castnow-gui depends on:
 * [castnow](https://github.com/xat/castnow)
-* [ffmpeg](https://github.com/FFmpeg/FFmpeg)
+* [ffmpeg](https://ffmpeg.org)
 * [youtube-dl](https://github.com/rg3/youtube-dl)
 
 Please make sure you have all of the above installed before running castnow-gui.
@@ -14,7 +14,7 @@ Please make sure you have all of the above installed before running castnow-gui.
 Some of them might be available from your linux distro repos.
 Try installing them with your package manager or follow the links for more info.
 
-Currently VAAPI encoding is required. Make sure you have it installed.
+**Currently VAAPI encoding is required.** Make sure you have it installed.
 More info and how to install VAAPI [here](https://wiki.archlinux.org/index.php/Hardware_video_acceleration).
 
 ### Install or update
