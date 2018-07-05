@@ -23,6 +23,8 @@ public:
 
     void FileStreamingVAAPI(string filePath);
 
+    void LinkStreaming(string link);
+
     void DesktopStreamingVAAPI();
 };
 

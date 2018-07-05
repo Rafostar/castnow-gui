@@ -32,10 +32,22 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-int MainWindow::checkFilePath()
+int MainWindow::checkFilePath(string type)
 {
-    filePathQS = ui->insertFilePath->text();
-    filePath = filePathQS.toUtf8().constData();
+    if(type == "file")
+    {
+        filePathQS = ui->insertFilePath->text();
+        filePath = filePathQS.toUtf8().constData();
+    }
+    else if(type == "link")
+    {
+        filePathQS = ui->insertLink->text();
+        filePath = filePathQS.toUtf8().constData();
+    }
+    else
+    {
+        return 1;
+    }
 
     if(filePath == "")
     {
@@ -51,6 +63,7 @@ int MainWindow::checkFilePath()
 void MainWindow::enableCastingButtons(bool state)
 {
     ui->castFileButton->setEnabled(state);
+    ui->castLinkButton->setEnabled(state);
     ui->castDesktopButton->setEnabled(state);
     ui->stopCastingButton->setEnabled(!state);
 }
@@ -63,25 +76,14 @@ void MainWindow::statusBarCastingMsg()
     ui->statusBar->showMessage(message);
 }
 
-void MainWindow::statusBarError()
+void MainWindow::statusBarFileError()
 {
-    ui->statusBar->showMessage("Empty path to file!");
+    ui->statusBar->showMessage("Empty file path field!");
 }
 
-void MainWindow::on_castFileButton_clicked()
+void MainWindow::statusBarLinkError()
 {
-    if(checkFilePath() == 0)
-    {
-        //system(shellMW.stopRunningScreen); //must be here to stop screen session after reopening castnow-gui
-
-        enableCastingButtons(false);
-        statusBarCastingMsg();
-        shellMW.FileStreamingVAAPI(filePath);
-    }
-    else
-    {
-        statusBarError();
-    }
+    ui->statusBar->showMessage("Empty link field!");
 }
 
 void MainWindow::on_openFileButton_clicked()
@@ -94,6 +96,38 @@ void MainWindow::on_openFileButton_clicked()
     if(openFileName!="")
     {
         ui->insertFilePath->setText(openFileName);
+    }
+}
+
+void MainWindow::on_castFileButton_clicked()
+{
+    if(checkFilePath("file") == 0)
+    {
+        //system(shellMW.stopRunningScreen); //must be here to stop screen session after reopening castnow-gui
+
+        enableCastingButtons(false);
+        statusBarCastingMsg();
+        shellMW.FileStreamingVAAPI(filePath);
+    }
+    else
+    {
+        statusBarFileError();
+    }
+}
+
+void MainWindow::on_castLinkButton_clicked()
+{
+    if(checkFilePath("link") == 0)
+    {
+        //system(shellMW.stopRunningScreen); //must be here to stop screen session after reopening castnow-gui
+
+        enableCastingButtons(false);
+        statusBarCastingMsg();
+        shellMW.LinkStreaming(filePath);
+    }
+    else
+    {
+        statusBarLinkError();
     }
 }
 

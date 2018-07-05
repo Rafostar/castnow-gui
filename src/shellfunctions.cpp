@@ -18,7 +18,7 @@ char ffmpegQuit[] = {'q'};
 void ShellFunctions::CreateProcessPipe(const char* systemCommand)
 {
     shellProcess = popen(systemCommand, "w");
-    cout << "Created new ffmpeg process" << endl;
+    //cout << "Created new ffmpeg process" << endl;
 }
 
 void ShellFunctions::SendKeyToProcessPipe(char sendKey[])
@@ -48,10 +48,24 @@ void ShellFunctions::FileStreamingVAAPI(string filePath)
        << "M -c:a copy -f matroska - | " << confDataSF.castnowPath << " --quiet -";
 
     string tmp = ss.str();
-    cout << "Running: " << tmp << endl; // for debug
+    //cout << "Running: " << tmp << endl; // for debug
     const char* castFile = tmp.c_str();
 
     CreateProcessPipe(castFile);
+}
+
+void ShellFunctions::LinkStreaming(string link)
+{
+    //Need to add to youtube-dl option force H264 here!!!
+
+    stringstream ss;
+    ss << "youtube-dl '" << link << "' -o - | " << confDataSF.castnowPath << " --quiet -";
+
+    string tmp = ss.str();
+    //cout << "Running: " << tmp << endl; // for debug
+    const char* castLink = tmp.c_str();
+
+    CreateProcessPipe(castLink);
 }
 
 void ShellFunctions::DesktopStreamingVAAPI()
@@ -71,7 +85,7 @@ void ShellFunctions::DesktopStreamingVAAPI()
        << "M -c:a flac -f matroska - | " << confDataSF.castnowPath << " --quiet -";
 
     string tmp = ss.str();
-    cout << "Running: " << tmp << endl; // for debug
+    //cout << "Running: " << tmp << endl; // for debug
     const char* castDesktop = tmp.c_str();
 
     CreateProcessPipe(castDesktop);

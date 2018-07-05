@@ -17,9 +17,10 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    int checkFilePath();
+    int checkFilePath(string type);
     void statusBarCastingMsg();
-    void statusBarError();
+    void statusBarFileError();
+    void statusBarLinkError();
 
 private slots:
     void on_openFileButton_clicked();
@@ -39,6 +40,8 @@ private slots:
     void on_actionAbout_triggered();
 
     void on_actionOpenFile_triggered();
+
+    void on_castLinkButton_clicked();
 
 private:
     Ui::MainWindow *ui;

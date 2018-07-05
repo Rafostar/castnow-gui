@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>520</width>
     <height>400</height>
    </rect>
   </property>
@@ -18,13 +18,13 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>400</width>
+    <width>520</width>
     <height>400</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>400</width>
+    <width>520</width>
     <height>400</height>
    </size>
   </property>
@@ -49,21 +49,21 @@
      <rect>
       <x>300</x>
       <y>10</y>
-      <width>92</width>
-      <height>31</height>
+      <width>101</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Open file</string>
+     <string>Browse files</string>
     </property>
    </widget>
    <widget class="QPushButton" name="castFileButton">
     <property name="geometry">
      <rect>
-      <x>281</x>
-      <y>270</y>
-      <width>111</width>
-      <height>36</height>
+      <x>410</x>
+      <y>10</y>
+      <width>101</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -76,7 +76,7 @@
       <x>10</x>
       <y>10</y>
       <width>281</width>
-      <height>31</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="placeholderText">
@@ -89,10 +89,10 @@
    <widget class="QPushButton" name="castDesktopButton">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>310</y>
-      <width>111</width>
-      <height>36</height>
+      <x>260</x>
+      <y>130</y>
+      <width>121</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -105,14 +105,95 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>310</y>
-      <width>111</width>
+      <x>130</x>
+      <y>240</y>
+      <width>261</width>
       <height>36</height>
      </rect>
     </property>
     <property name="text">
      <string>Stop Casting</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="insertLink">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>391</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Enter web link here...</string>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="castLinkButton">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>70</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Cast Link</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line1">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>50</y>
+      <width>521</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>110</y>
+      <width>521</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="castDesktopButton_2">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>130</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Cast Camera</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line2_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>170</y>
+      <width>521</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
     </property>
    </widget>
   </widget>
@@ -121,7 +202,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>520</width>
      <height>28</height>
     </rect>
    </property>
