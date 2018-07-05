@@ -26,6 +26,8 @@ private slots:
 
     void UpdateUsedValues();
 
+    void RestoreDefaultValues();
+
     void on_doubleSpinBoxFileOffset_valueChanged(const QString &arg1);
 
 private:

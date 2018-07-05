@@ -68,6 +68,8 @@ void ConfigData::ReadConfigFile()
             {
                 if(configParamName == "castnowPath") castnowPath = configParamValue;
                 else if(configParamName == "ffmpegPath") ffmpegPath = configParamValue;
+                else if(configParamName == "fileBitrate") fileBitrate = stod(configParamValue);
+                else if(configParamName == "fileAudioDelay") fileAudioDelay = stod(configParamValue);
                 else if(configParamName == "desktopFramerate") desktopFramerate = stoi(configParamValue);
                 else if(configParamName == "desktopBitrate") desktopBitrate = stod(configParamValue);
                 else if(configParamName == "desktopAudioDelay") desktopAudioDelay = stod(configParamValue);
@@ -85,6 +87,8 @@ void ConfigData::CreateDefaultConfigFile()
     ofstream configFile(configFilePath);
     configFile << "castnowPath=" << defaultCastnowPath << endl
                << "ffmpegPath=" << defaultFfmpegPath << endl
+               << "fileBitrate=" << defaultFileBitrate << endl
+               << "fileAudioDelay=" << defaultFileAudioDelay << endl
                << "desktopFramerate=" << defaultDesktopFramerate << endl
                << "desktopBitrate=" << defaultDesktopBitrate << endl
                << "desktopAudioDelay=" << defaultDesktopAudioDelay << endl
@@ -97,6 +101,8 @@ void ConfigData::SaveConfigurationToFile()
     ofstream configFile(configFilePath);
     configFile << "castnowPath=" << castnowPath << endl
                << "ffmpegPath=" << ffmpegPath << endl
+               << "fileBitrate=" << fileBitrate << endl
+               << "fileAudioDelay=" << fileAudioDelay << endl
                << "desktopFramerate=" << desktopFramerate << endl
                << "desktopBitrate=" << desktopBitrate << endl
                << "desktopAudioDelay=" << desktopAudioDelay << endl
