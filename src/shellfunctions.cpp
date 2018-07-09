@@ -68,6 +68,20 @@ void ShellFunctions::LinkStreaming(string link)
     CreateProcessPipe(castLink);
 }
 
+void ShellFunctions::CaptureDeviceStreaming()
+{
+    //Need to add to youtube-dl option force H264 here!!!
+
+    stringstream ss;
+    ss << "ffmpeg -f v4l2 -framerate 30 -video_size 640x480 -i /dev/video0 -f matroska - | " << confDataSF.castnowPath << " --quiet -";
+
+    string tmp = ss.str();
+    //cout << "Running: " << tmp << endl; // for debug
+    const char* castLink = tmp.c_str();
+
+    CreateProcessPipe(castLink);
+}
+
 void ShellFunctions::DesktopStreamingVAAPI()
 {
     double startDelay = 5;

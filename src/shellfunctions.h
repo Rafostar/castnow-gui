@@ -26,6 +26,8 @@ public:
     void LinkStreaming(string link);
 
     void DesktopStreamingVAAPI();
+
+    void CaptureDeviceStreaming();
 };
 
 #endif // SHELLFUNCTIONS_H
