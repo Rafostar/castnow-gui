@@ -4,12 +4,14 @@
 #include <QDesktopWidget>
 #include <string>
 
+using namespace std;
+
 class ConfigData
 {
 public:
-    static std::string castnowPath, ffmpegPath;
+    static string castnowPath, ffmpegPath;
 
-    static std::string defaultCastnowPath, defaultFfmpegPath;
+    static string defaultCastnowPath, defaultFfmpegPath;
 
     static int desktopWidth, desktopHeight, desktopFramerate, threadQueueSize;
 
