@@ -2,6 +2,7 @@
 <qresource prefix="/player_controls">
     <file>images/av_next.png</file>
     <file>images/av_pause.png</file>
+    <file>images/av_stop.png</file>
     <file>images/av_play.png</file>
     <file>images/av_previous.png</file>
 </qresource>
