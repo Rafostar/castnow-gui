@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui multimedia multimediawidgets
 CONFIG   += c++11
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -31,4 +31,4 @@ FORMS    += mainwindow.ui \
     aboutwindow.ui
 
 RESOURCES += \
-    images.qrc
+    resources.qrc
