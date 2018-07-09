@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>560</width>
-    <height>400</height>
+    <height>490</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,13 +19,13 @@
   <property name="minimumSize">
    <size>
     <width>560</width>
-    <height>400</height>
+    <height>490</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>560</width>
-    <height>400</height>
+    <height>490</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -70,7 +70,7 @@
      <string>Cast file</string>
     </property>
     <property name="icon">
-     <iconset resource="images.qrc">
+     <iconset resource="resources.qrc">
       <normaloff>:/icons/images/cast_icon_small.png</normaloff>:/icons/images/cast_icon_small.png</iconset>
     </property>
     <property name="iconSize">
@@ -100,7 +100,7 @@
     <property name="geometry">
      <rect>
       <x>140</x>
-      <y>310</y>
+      <y>400</y>
       <width>131</width>
       <height>31</height>
      </rect>
@@ -109,7 +109,7 @@
      <string>Cast desktop</string>
     </property>
     <property name="icon">
-     <iconset resource="images.qrc">
+     <iconset resource="resources.qrc">
       <normaloff>:/icons/images/desktop_icon.png</normaloff>:/icons/images/desktop_icon.png</iconset>
     </property>
     <property name="iconSize">
@@ -119,20 +119,42 @@
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="stopCastingButton">
+   <widget class="QPushButton" name="avStopButton">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>260</y>
-      <width>121</width>
-      <height>36</height>
+      <x>178</x>
+      <y>354</y>
+      <width>50</width>
+      <height>26</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Stop Casting</string>
+    <property name="minimumSize">
+     <size>
+      <width>50</width>
+      <height>26</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>50</width>
+      <height>26</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 30, 30);</string>
+    </property>
+    <property name="icon">
+     <iconset resource="resources.qrc">
+      <normaloff>:/player_controls/images/av_stop.png</normaloff>:/player_controls/images/av_stop.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>28</width>
+      <height>28</height>
+     </size>
     </property>
    </widget>
    <widget class="QLineEdit" name="insertLink">
@@ -164,7 +186,7 @@
      <string>Cast link</string>
     </property>
     <property name="icon">
-     <iconset resource="images.qrc">
+     <iconset resource="resources.qrc">
       <normaloff>:/icons/images/cast_icon_small.png</normaloff>:/icons/images/cast_icon_small.png</iconset>
     </property>
     <property name="iconSize">
@@ -203,9 +225,9 @@
    <widget class="QPushButton" name="castDeviceButton">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>310</y>
-      <width>131</width>
+      <x>430</x>
+      <y>400</y>
+      <width>121</width>
       <height>31</height>
      </rect>
     </property>
@@ -213,7 +235,7 @@
      <string>Cast device</string>
     </property>
     <property name="icon">
-     <iconset resource="images.qrc">
+     <iconset resource="resources.qrc">
       <normaloff>:/icons/images/webcamera_icon.png</normaloff>:/icons/images/webcamera_icon.png</iconset>
     </property>
     <property name="iconSize">
@@ -227,7 +249,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>290</y>
+      <y>380</y>
       <width>561</width>
       <height>20</height>
      </rect>
@@ -239,9 +261,9 @@
    <widget class="QPushButton" name="castCDButton">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>310</y>
-      <width>101</width>
+      <x>10</x>
+      <y>400</y>
+      <width>111</width>
       <height>31</height>
      </rect>
     </property>
@@ -249,7 +271,7 @@
      <string>Cast CD</string>
     </property>
     <property name="icon">
-     <iconset resource="images.qrc">
+     <iconset resource="resources.qrc">
       <normaloff>:/icons/images/cd_icon.png</normaloff>:/icons/images/cd_icon.png</iconset>
     </property>
     <property name="iconSize">
@@ -262,9 +284,9 @@
    <widget class="QPushButton" name="castFolderButton">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>310</y>
-      <width>131</width>
+      <x>290</x>
+      <y>400</y>
+      <width>121</width>
       <height>31</height>
      </rect>
     </property>
@@ -272,7 +294,7 @@
      <string>Cast folder</string>
     </property>
     <property name="icon">
-     <iconset resource="images.qrc">
+     <iconset resource="resources.qrc">
       <normaloff>:/icons/images/folder_icon.png</normaloff>:/icons/images/folder_icon.png</iconset>
     </property>
     <property name="iconSize">
@@ -280,6 +302,211 @@
       <width>24</width>
       <height>24</height>
      </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="avNextButton">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>238</x>
+      <y>354</y>
+      <width>60</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>60</width>
+      <height>26</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>60</width>
+      <height>26</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(30, 140, 255);</string>
+    </property>
+    <property name="icon">
+     <iconset resource="resources.qrc">
+      <normaloff>:/player_controls/images/av_next.png</normaloff>:/player_controls/images/av_next.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="avPreviousButton">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>48</x>
+      <y>354</y>
+      <width>60</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>60</width>
+      <height>26</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>60</width>
+      <height>26</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(30, 140, 255);</string>
+    </property>
+    <property name="icon">
+     <iconset resource="resources.qrc">
+      <normaloff>:/player_controls/images/av_previous.png</normaloff>:/player_controls/images/av_previous.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="avPauseButton">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>118</x>
+      <y>354</y>
+      <width>50</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>50</width>
+      <height>26</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>50</width>
+      <height>26</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(252, 233, 79);</string>
+    </property>
+    <property name="icon">
+     <iconset resource="resources.qrc">
+      <normaloff>:/player_controls/images/av_pause.png</normaloff>:/player_controls/images/av_pause.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>26</width>
+      <height>26</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QFrame" name="videoFrame">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>130</y>
+      <width>324</width>
+      <height>184</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>324</width>
+      <height>184</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>324</width>
+      <height>184</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border : 2px solid;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QVideoWidget" name="videoWidget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>2</x>
+       <y>2</y>
+       <width>320</width>
+       <height>180</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>320</width>
+       <height>180</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>320</width>
+       <height>180</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border : 0px;</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QProgressBar" name="avProgressBar">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>324</y>
+      <width>324</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+      <italic>true</italic>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QProgressBar {
+border: 2px solid grey;
+}
+
+QProgressBar::chunk {
+background-color: rgb(255, 128, 200);
+width: 1px;
+}</string>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="format">
+     <string>00:00:0%v</string>
     </property>
    </widget>
   </widget>
@@ -309,7 +536,13 @@
    <addaction name="menuFile"/>
    <addaction name="menuOptions"/>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+  </widget>
   <action name="actionConfig">
    <property name="text">
     <string>Config</string>
@@ -332,8 +565,16 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QVideoWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">qvideowidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
-  <include location="images.qrc"/>
+  <include location="resources.qrc"/>
  </resources>
  <connections/>
 </ui>
