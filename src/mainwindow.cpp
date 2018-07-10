@@ -181,7 +181,7 @@ void MainWindow::on_actionQuit_triggered()
 void MainWindow::on_castCDButton_clicked()
 {
     // temporary for player testing:
-    SetMediaPreview("video", "/tmp/ger.mp4");
+    SetMediaPreview("video", "/tmp/test.mp4");
 }
 
 void MainWindow::on_castDesktopButton_clicked()
@@ -198,7 +198,7 @@ void MainWindow::on_castFolderButton_clicked()
 
 void MainWindow::on_castDeviceButton_clicked()
 {
-
+    shellMW.CaptureDeviceStreaming();
 }
 
 
@@ -252,8 +252,6 @@ void MainWindow::PreviewStatusChanged()
 {
     int mediaStatus = mediaPlayer->mediaStatus();
     double mediaLenght;
-
-    cout << "ST: " << mediaStatus << endl;
 
     switch(mediaStatus)
     {

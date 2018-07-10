@@ -70,8 +70,6 @@ void ShellFunctions::LinkStreaming(string link)
 
 void ShellFunctions::CaptureDeviceStreaming()
 {
-    //Need to add to youtube-dl option force H264 here!!!
-
     stringstream ss;
     ss << "ffmpeg -f v4l2 -framerate 30 -video_size 640x480 -i /dev/video0 -f matroska - | " << confDataSF.castnowPath << " --quiet -";
 
