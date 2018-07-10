@@ -5,6 +5,7 @@
 #include "configdata.h"
 #include <QMainWindow>
 #include <QMediaPlayer>
+#include <QTimer>
 
 namespace Ui {
 class MainWindow;
@@ -61,7 +62,11 @@ private slots:
 
     void ChangePreviewProgress();
 
+    void ChangePreviewImage(const char *imgResource);
+
     void on_avToggleButton_clicked();
+
+    void on_castFolderButton_clicked();
 
 private:
     Ui::MainWindow *ui;

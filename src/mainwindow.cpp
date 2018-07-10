@@ -24,16 +24,19 @@ string filePath;
 QString openFileName;
 QString message;
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-    mediaPlayer->setVideoOutput(ui->videoWidget);
     connect(mediaPlayer, &QMediaPlayer::mediaChanged, this, &MainWindow::PreviewMediaChanged);
     connect(mediaPlayer, &QMediaPlayer::mediaStatusChanged, this, &MainWindow::PreviewStatusChanged);
     connect(mediaPlayer, &QMediaPlayer::positionChanged, this, &MainWindow::ChangePreviewProgress);
+
+    mediaPlayer->setVideoOutput(ui->videoWidget);
+    ui->videoWidget->hide();
 }
 
 MainWindow::~MainWindow()
@@ -142,13 +145,6 @@ void MainWindow::on_castLinkButton_clicked()
     }
 }
 
-void MainWindow::on_castDesktopButton_clicked()
-{
-    EnableCastingButtons(false);
-    ui->statusBar->showMessage("Started casting desktop");
-    shellMW.DesktopStreamingVAAPI();
-}
-
 void MainWindow::on_avStopButton_clicked()
 {
     ui->statusBar->showMessage("Streaming is stopping. Please wait...");
@@ -179,16 +175,31 @@ void MainWindow::on_actionQuit_triggered()
     close();
 }
 
-void MainWindow::on_castDeviceButton_clicked()
-{
-    SetMediaPreview("video", "/tmp/mach.mkv");
-}
+
+// ### BOTTOM BUTTONS ACTIONS ### //
 
 void MainWindow::on_castCDButton_clicked()
 {
+    // temporary for player testing:
     SetMediaPreview("video", "/tmp/ger.mp4");
 }
 
+void MainWindow::on_castDesktopButton_clicked()
+{
+    EnableCastingButtons(false);
+    ui->statusBar->showMessage("Started casting desktop");
+    shellMW.DesktopStreamingVAAPI();
+}
+
+void MainWindow::on_castFolderButton_clicked()
+{
+
+}
+
+void MainWindow::on_castDeviceButton_clicked()
+{
+
+}
 
 
 // ### Media Player Related Functions ### //
@@ -239,9 +250,10 @@ void MainWindow::PreviewMediaChanged()
 
 void MainWindow::PreviewStatusChanged()
 {
-    QPalette palette = ui->videoFrame->palette();
     int mediaStatus = mediaPlayer->mediaStatus();
     double mediaLenght;
+
+    cout << "ST: " << mediaStatus << endl;
 
     switch(mediaStatus)
     {
@@ -256,15 +268,21 @@ void MainWindow::PreviewStatusChanged()
         case 7: ui->avProgressBar->setFormat("00:00:00");
                 ui->avProgressBar->setMaximum(1);
                 ui->avProgressBar->setValue(0);
-
-                palette.setBrush(QPalette::Window, QBrush(QPixmap(":/player_previews/images/av_no_media.png")));
-                ui->videoFrame->setPalette(palette);
-                ui->videoFrame->setAutoFillBackground(true);
-                ui->videoWidget->hide();
+                ui->videoFrame->setStyleSheet("border : 2px solid;");
+                ChangePreviewImage(":/player_previews/images/av_no_media.png");
                 break;
         case 8: cout << "Cannot Play This Media!"; //Needs better error handling
                 break;
     }
+}
+
+void MainWindow::ChangePreviewImage(const char *imgResource)
+{
+    QPalette palette = ui->videoFrame->palette();
+    palette.setBrush(QPalette::Window, QBrush(QPixmap(imgResource)));
+    ui->videoFrame->setPalette(palette);
+    ui->videoFrame->setAutoFillBackground(true);
+    ui->videoWidget->hide();
 }
 
 QString MainWindow::ConvertProgressTime(double mediaPosition)
