@@ -1,5 +1,6 @@
 #ifndef SHELLFUNCTIONS_H
 #define SHELLFUNCTIONS_H
+
 #include <string>
 
 using namespace std;

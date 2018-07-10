@@ -37,7 +37,7 @@ private slots:
 
     void on_castLinkButton_clicked();
 
-    void on_castCameraButton_clicked();
+    void on_castDeviceButton_clicked();
 
     void on_castCDButton_clicked();
 
@@ -53,11 +53,15 @@ private slots:
 
     void SetMediaPreview(string mediaType, QString path);
 
+    void PreviewMediaChanged();
+
     void PreviewStatusChanged();
 
     QString ConvertProgressTime(double mediaPosition);
 
     void ChangePreviewProgress();
+
+    void on_avToggleButton_clicked();
 
 private:
     Ui::MainWindow *ui;

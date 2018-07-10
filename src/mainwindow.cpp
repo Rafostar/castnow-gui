@@ -24,8 +24,6 @@ string filePath;
 QString openFileName;
 QString message;
 
-qint64 mediaLenght;
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -33,13 +31,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     mediaPlayer->setVideoOutput(ui->videoWidget);
+    connect(mediaPlayer, &QMediaPlayer::mediaChanged, this, &MainWindow::PreviewMediaChanged);
     connect(mediaPlayer, &QMediaPlayer::mediaStatusChanged, this, &MainWindow::PreviewStatusChanged);
     connect(mediaPlayer, &QMediaPlayer::positionChanged, this, &MainWindow::ChangePreviewProgress);
-
-    //FIXES: QWidget::paintEngine: Should no longer be called
-    mediaPlayer->setMedia(QUrl("qrc:/player_bugfix/videos/av_no_media_short.mp4"));
-    mediaPlayer->play();
-    //mediaPlayer->stop();
 }
 
 MainWindow::~MainWindow()
@@ -91,87 +85,7 @@ void MainWindow::StatusBarCastingMsg()
     ui->statusBar->showMessage(message);
 }
 
-void MainWindow::SetMediaPreview(string mediaType, QString path = "none")
-{
-    QPalette palette = ui->videoWidget->palette();
 
-    if(mediaType == "video")
-    {
-        //mediaPlayer->setVideoOutput(ui->videoWidget);
-        mediaPlayer->setMedia(QUrl::fromLocalFile(path));
-        mediaPlayer->play();
-    }
-    else if(mediaType == "picture")
-    {
-        palette.setBrush(QPalette::Window, QBrush(QPixmap(path)));
-        ui->videoWidget->setAutoFillBackground(true);
-        ui->videoWidget->setPalette(palette);
-        ui->videoWidget->show();
-    }
-    else if(mediaType == "audio")
-    {
-
-    }
-    else if(mediaType == "link")
-    {
-
-    }
-    else if(mediaType == "cd")
-    {
-
-    }
-    else if(mediaType == "desktop")
-    {
-
-    }
-    else if(mediaType == "device")
-    {
-
-    }
-}
-
-void MainWindow::PreviewStatusChanged()
-{
-    int mediaStatus = mediaPlayer->mediaStatus();
-
-    switch(mediaStatus)
-    {
-        case 3: mediaLenght = round(mediaPlayer->duration() / 1000);
-                ui->avProgressBar->setMaximum(mediaLenght);
-                ui->avProgressBar->setValue(0);
-                break;
-        case 7: ui->avProgressBar->setFormat("00:00:00");
-                ui->avProgressBar->setValue(0);
-                mediaPlayer->setMedia(QUrl("qrc:/player_previews/videos/av_no_media.mp4"));
-                //mediaPlayer->play();
-                break;
-        case 8: cout << "Cannot Play This Media!"; //Needs better error handling
-                break;
-    }
-}
-
-QString MainWindow::ConvertProgressTime(double mediaPosition)
-{
-  int sec, min, hrs;
-  hrs = mediaPosition / 3600;
-  min = mediaPosition / 60 - (hrs * 60);
-  sec = mediaPosition - (hrs * 3600) - (min * 60);
-
-  ostringstream progressTime;
-  progressTime << setfill('0') << setw(2) << hrs << ":" << setw(2) << min << ":" << setw(2) << sec;
-  QString progressTimeQS = QString::fromStdString(progressTime.str());
-  return progressTimeQS;
-}
-
-void MainWindow::ChangePreviewProgress()
-{
-
-    double mediaPosition = mediaPlayer->position();
-    mediaPosition = round(mediaPosition / 1000);
-
-    ui->avProgressBar->setFormat(ConvertProgressTime(mediaPosition));
-    ui->avProgressBar->setValue(mediaPosition);
-}
 
 void MainWindow::StatusBarFileError()
 {
@@ -265,14 +179,131 @@ void MainWindow::on_actionQuit_triggered()
     close();
 }
 
-void MainWindow::on_castCameraButton_clicked()
+void MainWindow::on_castDeviceButton_clicked()
 {
-
+    SetMediaPreview("video", "/tmp/mach.mkv");
 }
 
 void MainWindow::on_castCDButton_clicked()
 {
-    //mediaPlayer->setVideoOutput(ui->videoWidget); //Interupts photo preview
+    SetMediaPreview("video", "/tmp/ger.mp4");
+}
 
-    //SetMediaPreview("video", "/path/to/file.mp4");
+
+
+// ### Media Player Related Functions ### //
+
+void MainWindow::SetMediaPreview(string mediaType, QString path = "none")
+{
+    if(mediaType == "video")
+    {
+        mediaPlayer->setMedia(QUrl::fromLocalFile(path));
+        mediaPlayer->play();
+    }
+    else if(mediaType == "picture")
+    {
+
+    }
+    else if(mediaType == "audio")
+    {
+
+    }
+    else if(mediaType == "link")
+    {
+
+    }
+    else if(mediaType == "cd")
+    {
+
+    }
+    else if(mediaType == "desktop")
+    {
+
+    }
+    else if(mediaType == "device")
+    {
+
+    }
+}
+
+void MainWindow::PreviewMediaChanged()
+{
+    //TO DO: CHECK FILETYPE AND SET VIDEO/IMAGE HERE
+
+    /* LOADING MEDIA:
+     double mediaLenght = -1;
+     ui->avProgressBar->setMaximum(mediaLenght);
+    */
+
+}
+
+void MainWindow::PreviewStatusChanged()
+{
+    QPalette palette = ui->videoFrame->palette();
+    int mediaStatus = mediaPlayer->mediaStatus();
+    double mediaLenght;
+
+    switch(mediaStatus)
+    {
+        case 5:
+        case 6: mediaLenght = mediaPlayer->duration();
+                mediaLenght = round(mediaLenght / 1000);
+                ui->avProgressBar->setMaximum(mediaLenght);
+                ui->avProgressBar->setValue(0);
+                ui->videoFrame->setAutoFillBackground(false);
+                ui->videoWidget->show();
+                break;
+        case 7: ui->avProgressBar->setFormat("00:00:00");
+                ui->avProgressBar->setMaximum(1);
+                ui->avProgressBar->setValue(0);
+
+                palette.setBrush(QPalette::Window, QBrush(QPixmap(":/player_previews/images/av_no_media.png")));
+                ui->videoFrame->setPalette(palette);
+                ui->videoFrame->setAutoFillBackground(true);
+                ui->videoWidget->hide();
+                break;
+        case 8: cout << "Cannot Play This Media!"; //Needs better error handling
+                break;
+    }
+}
+
+QString MainWindow::ConvertProgressTime(double mediaPosition)
+{
+  int sec, min, hrs;
+  hrs = mediaPosition / 3600;
+  min = mediaPosition / 60 - (hrs * 60);
+  sec = mediaPosition - (hrs * 3600) - (min * 60);
+
+  ostringstream progressTime;
+  progressTime << setfill('0') << setw(2) << hrs << ":" << setw(2) << min << ":" << setw(2) << sec;
+  QString progressTimeQS = QString::fromStdString(progressTime.str());
+  return progressTimeQS;
+}
+
+void MainWindow::ChangePreviewProgress()
+{
+
+    double mediaPosition = mediaPlayer->position();
+    mediaPosition = round(mediaPosition / 1000);
+
+    ui->avProgressBar->setFormat(ConvertProgressTime(mediaPosition));
+    ui->avProgressBar->setValue(mediaPosition);
+}
+
+void MainWindow::on_avToggleButton_clicked()
+{
+    int playingState = mediaPlayer->state();
+
+    if(playingState == 1)
+    {
+        mediaPlayer->pause();
+        ui->avToggleButton->setStyleSheet("background-color: rgb(138, 226, 52);");
+        ui->avToggleButton->setIcon(QIcon(":/player_controls/images/av_play.png"));
+    }
+    else if(playingState == 2)
+    {
+        mediaPlayer->play();
+        ui->avToggleButton->setStyleSheet("background-color: rgb(252, 233, 79);");
+        ui->avToggleButton->setIcon(QIcon(":/player_controls/images/av_pause.png"));
+    }
 }
