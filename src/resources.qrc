@@ -16,9 +16,6 @@
     <file>images/webcamera_icon.png</file>
 </qresource>
 <qresource prefix="/player_previews">
-    <file>videos/av_no_media.mp4</file>
-</qresource>
-<qresource prefix="/player_bugfix">
-    <file>videos/av_no_media_short.mp4</file>
+    <file>images/av_no_media.png</file>
 </qresource>
 </RCC>
