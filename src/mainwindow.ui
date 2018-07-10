@@ -506,7 +506,7 @@ width: 1px;
      <set>Qt::AlignCenter</set>
     </property>
     <property name="format">
-     <string>00:00:0%v</string>
+     <string>00:00:00</string>
     </property>
    </widget>
   </widget>

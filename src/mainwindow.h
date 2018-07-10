@@ -4,6 +4,7 @@
 #include "shellfunctions.h"
 #include "configdata.h"
 #include <QMainWindow>
+#include <QMediaPlayer>
 
 namespace Ui {
 class MainWindow;
@@ -17,11 +18,6 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    int checkFilePath(string type);
-    void statusBarCastingMsg();
-    void statusBarFileError();
-    void statusBarLinkError();
-
 private slots:
     void on_openFileButton_clicked();
 
@@ -29,9 +25,7 @@ private slots:
 
     void on_castDesktopButton_clicked();
 
-    void on_stopCastingButton_clicked();
-
-    void enableCastingButtons(bool state);
+    void on_avStopButton_clicked();
 
     void on_actionConfig_triggered();
 
@@ -43,8 +37,32 @@ private slots:
 
     void on_castLinkButton_clicked();
 
+    void on_castCameraButton_clicked();
+
+    void on_castCDButton_clicked();
+
+    void EnableCastingButtons(bool state);
+
+    int CheckFilePath(string type);
+
+    void StatusBarCastingMsg();
+
+    void StatusBarFileError();
+
+    void StatusBarLinkError();
+
+    void SetMediaPreview(string mediaType, QString path);
+
+    void PreviewStatusChanged();
+
+    QString ConvertProgressTime(double mediaPosition);
+
+    void ChangePreviewProgress();
+
 private:
     Ui::MainWindow *ui;
+
+    QMediaPlayer *mediaPlayer = new QMediaPlayer;
 };
 
 #endif // MAINWINDOW_H
