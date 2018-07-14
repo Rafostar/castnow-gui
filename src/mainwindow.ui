@@ -130,7 +130,7 @@
    </widget>
    <widget class="QPushButton" name="avStopButton">
     <property name="enabled">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -412,7 +412,7 @@
    </widget>
    <widget class="QPushButton" name="avToggleButton">
     <property name="enabled">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="geometry">
      <rect>

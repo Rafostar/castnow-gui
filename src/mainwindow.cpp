@@ -44,7 +44,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-int MainWindow::CheckFilePath(string type)
+int MainWindow::CheckPath(string type)
 {
     if(type == "file")
     {
@@ -76,8 +76,16 @@ void MainWindow::EnableCastingButtons(bool state)
 {
     ui->castFileButton->setEnabled(state);
     ui->castLinkButton->setEnabled(state);
+
+    ui->castCDButton->setEnabled(state);
     ui->castDesktopButton->setEnabled(state);
+    ui->castFolderButton->setEnabled(state);
+    ui->castDeviceButton->setEnabled(state);
+
+    ui->avToggleButton->setEnabled(!state);
     ui->avStopButton->setEnabled(!state);
+    ui->avNextButton->setEnabled(!state);
+    ui->avPreviousButton->setEnabled(!state);
 }
 
 void MainWindow::StatusBarCastingMsg()
@@ -115,7 +123,7 @@ void MainWindow::on_openFileButton_clicked()
 
 void MainWindow::on_castFileButton_clicked()
 {
-    if(CheckFilePath("file") == 0)
+    if(CheckPath("file") == 0)
     {
         //system(shellMW.stopRunningScreen); //must be here to stop screen session after reopening castnow-gui
 
@@ -131,7 +139,7 @@ void MainWindow::on_castFileButton_clicked()
 
 void MainWindow::on_castLinkButton_clicked()
 {
-    if(CheckFilePath("link") == 0)
+    if(CheckPath("link") == 0)
     {
         //system(shellMW.stopRunningScreen); //must be here to stop screen session after reopening castnow-gui
 

@@ -44,7 +44,7 @@ private slots:
 
     void EnableCastingButtons(bool state);
 
-    int CheckFilePath(string type);
+    int CheckPath(string type);
 
     void StatusBarCastingMsg();
 
