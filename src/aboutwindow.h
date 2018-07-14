@@ -15,8 +15,6 @@ public:
     explicit AboutWindow(QWidget *parent = 0);
     ~AboutWindow();
 
-private slots:
-
 private:
     Ui::AboutWindow *ui;
 };
