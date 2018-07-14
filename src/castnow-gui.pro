@@ -18,17 +18,20 @@ SOURCES += main.cpp\
     shellfunctions.cpp \
     configwindow.cpp \
     configdata.cpp \
-    aboutwindow.cpp
+    aboutwindow.cpp \
+    messagewindow.cpp
 
 HEADERS  += mainwindow.h \
     shellfunctions.h \
     configwindow.h \
     configdata.h \
-    aboutwindow.h
+    aboutwindow.h \
+    messagewindow.h
 
 FORMS    += mainwindow.ui \
     configwindow.ui \
-    aboutwindow.ui
+    aboutwindow.ui \
+    messagewindow.ui
 
 RESOURCES += \
     resources.qrc
