@@ -96,8 +96,6 @@ void MainWindow::StatusBarCastingMsg()
     ui->statusBar->showMessage(message);
 }
 
-
-
 void MainWindow::StatusBarFileError()
 {
     ui->statusBar->showMessage("Empty file path field!");
