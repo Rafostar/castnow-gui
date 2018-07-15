@@ -2,6 +2,9 @@
 #define MESSAGEWINDOW_H
 
 #include <QDialog>
+#include <string>
+
+using namespace std;
 
 namespace Ui {
 class MessageWindow;
@@ -14,6 +17,8 @@ class MessageWindow : public QDialog
 public:
     explicit MessageWindow(QWidget *parent = 0);
     ~MessageWindow();
+
+    void SetMessageText(QString messageType, QString messageText);
 
 private:
     Ui::MessageWindow *ui;

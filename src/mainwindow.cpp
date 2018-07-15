@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "configwindow.h"
-#include "aboutwindow.h"
 #include <QFileDialog>
 #include <QDesktopWidget>
 #include <QMediaPlayer>
@@ -43,6 +42,9 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+
+// ### MAIN WINDOW FUNCTIONS ### //
 
 int MainWindow::CheckPath(string type)
 {
@@ -106,6 +108,15 @@ void MainWindow::StatusBarLinkError()
     ui->statusBar->showMessage("Empty link field!");
 }
 
+void MainWindow::DisplayMessage(QString messageType, QString messageText)
+{
+    MsgWinMW->SetMessageText(messageType, messageText);
+    MsgWinMW->show();
+}
+
+
+// ### MAIN WINDOWS BUTTONS ACTIONS ### //
+
 void MainWindow::on_openFileButton_clicked()
 {
     QString defaultPath = "/home/";
@@ -151,13 +162,8 @@ void MainWindow::on_castLinkButton_clicked()
     }
 }
 
-void MainWindow::on_avStopButton_clicked()
-{
-    ui->statusBar->showMessage("Streaming is stopping. Please wait...");
-    shellMW.StopProcessPipe();
-    EnableCastingButtons(true);
-    ui->statusBar->showMessage("Streaming stopped");
-}
+
+// ### MENU BAR ACTIONS ### //
 
 void MainWindow::on_actionOpenFile_triggered()
 {
@@ -172,7 +178,6 @@ void MainWindow::on_actionConfig_triggered()
 
 void MainWindow::on_actionAbout_triggered()
 {
-    AboutWindow *aboutDialog = new AboutWindow;
     aboutDialog->show();
 }
 
@@ -199,7 +204,8 @@ void MainWindow::on_castDesktopButton_clicked()
 
 void MainWindow::on_castFolderButton_clicked()
 {
-
+    DisplayMessage("Error1", "string messageText");
+    //this->setDisabled(true);
 }
 
 void MainWindow::on_castDeviceButton_clicked()
@@ -208,7 +214,36 @@ void MainWindow::on_castDeviceButton_clicked()
 }
 
 
-// ### Media Player Related Functions ### //
+// ### MEDIA PLAYER BUTTONS ACTIONS ### //
+
+void MainWindow::on_avStopButton_clicked()
+{
+    ui->statusBar->showMessage("Streaming is stopping. Please wait...");
+    shellMW.StopProcessPipe();
+    EnableCastingButtons(true);
+    ui->statusBar->showMessage("Streaming stopped");
+}
+
+void MainWindow::on_avToggleButton_clicked()
+{
+    int playingState = mediaPlayer->state();
+
+    if(playingState == 1)
+    {
+        mediaPlayer->pause();
+        ui->avToggleButton->setStyleSheet("background-color: rgb(138, 226, 52);");
+        ui->avToggleButton->setIcon(QIcon(":/player_controls/images/av_play.png"));
+    }
+    else if(playingState == 2)
+    {
+        mediaPlayer->play();
+        ui->avToggleButton->setStyleSheet("background-color: rgb(252, 233, 79);");
+        ui->avToggleButton->setIcon(QIcon(":/player_controls/images/av_pause.png"));
+    }
+}
+
+
+// ### MEDIA PLAYER RELATED FUNCTIONS ### //
 
 void MainWindow::SetMediaPreview(string mediaType, QString path = "none")
 {
@@ -310,22 +345,4 @@ void MainWindow::ChangePreviewProgress()
 
     ui->avProgressBar->setFormat(ConvertProgressTime(mediaPosition));
     ui->avProgressBar->setValue(mediaPosition);
-}
-
-void MainWindow::on_avToggleButton_clicked()
-{
-    int playingState = mediaPlayer->state();
-
-    if(playingState == 1)
-    {
-        mediaPlayer->pause();
-        ui->avToggleButton->setStyleSheet("background-color: rgb(138, 226, 52);");
-        ui->avToggleButton->setIcon(QIcon(":/player_controls/images/av_play.png"));
-    }
-    else if(playingState == 2)
-    {
-        mediaPlayer->play();
-        ui->avToggleButton->setStyleSheet("background-color: rgb(252, 233, 79);");
-        ui->avToggleButton->setIcon(QIcon(":/player_controls/images/av_pause.png"));
-    }
 }

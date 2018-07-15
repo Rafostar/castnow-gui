@@ -3,6 +3,8 @@
 
 #include "shellfunctions.h"
 #include "configdata.h"
+#include "messagewindow.h"
+#include "aboutwindow.h"
 #include <QMainWindow>
 #include <QMediaPlayer>
 #include <QTimer>
@@ -68,10 +70,16 @@ private slots:
 
     void on_castFolderButton_clicked();
 
+    void DisplayMessage(QString messageType, QString messageText);
+
 private:
     Ui::MainWindow *ui;
 
     QMediaPlayer *mediaPlayer = new QMediaPlayer;
+
+    MessageWindow *MsgWinMW = new MessageWindow;
+
+    AboutWindow *aboutDialog = new AboutWindow;
 };
 
 #endif // MAINWINDOW_H
