@@ -1,7 +1,10 @@
 #ifndef MESSAGEWINDOW_H
 #define MESSAGEWINDOW_H
 
+#include "configdata.h"
 #include <QDialog>
+#include <QApplication>
+#include <QDesktopWidget>
 #include <string>
 
 using namespace std;
@@ -18,7 +21,7 @@ public:
     explicit MessageWindow(QWidget *parent = 0);
     ~MessageWindow();
 
-    void DisplayMessage(QString messageType, QString messageText);
+    void EditMessage(QString messageType, QString messageText);
 
 private:
     Ui::MessageWindow *ui;

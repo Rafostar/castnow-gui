@@ -71,7 +71,7 @@ private slots:
 
     void on_castFolderButton_clicked();
 
-    //void DisplayMessage(QString messageType, QString messageText);
+    void DisplayMessage(QString messageType, QString messageText);
 
 private:
     Ui::MainWindow *ui;

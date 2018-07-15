@@ -101,6 +101,14 @@ void MainWindow::StatusBarLinkError()
     ui->statusBar->showMessage("Empty link field!");
 }
 
+void MainWindow::DisplayMessage(QString messageType, QString messageText)
+{
+    int posX = this->pos().x() + ((this->width() - msgWin->width()) / 2);
+    int posY = this->pos().y() + ((this->height() - msgWin->height() / 2) / 2);
+    msgWin->move(posX, posY);
+    msgWin->EditMessage(messageType, messageText);
+}
+
 
 // ### MAIN WINDOWS BUTTONS ACTIONS ### //
 
@@ -190,8 +198,7 @@ void MainWindow::on_castDesktopButton_clicked()
 
 void MainWindow::on_castFolderButton_clicked()
 {
-    msgWin->DisplayMessage("Error1", "string messageText");
-    //this->setDisabled(true);
+    DisplayMessage("Error1", "string messageText");
 }
 
 void MainWindow::on_castDeviceButton_clicked()

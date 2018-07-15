@@ -1,6 +1,8 @@
 #include "messagewindow.h"
 #include "ui_messagewindow.h"
 
+#include "mainwindow.h"
+
 MessageWindow::MessageWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::MessageWindow)
@@ -14,8 +16,9 @@ MessageWindow::~MessageWindow()
     delete ui;
 }
 
-void MessageWindow::DisplayMessage(QString messageType, QString messageText)
+void MessageWindow::EditMessage(QString messageType, QString messageText)
 {
+    ui->messageType->setText(messageType);
     ui->messageText->setText(messageText);
     this->show();
 }
