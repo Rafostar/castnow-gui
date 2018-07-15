@@ -18,7 +18,7 @@ public:
     explicit MessageWindow(QWidget *parent = 0);
     ~MessageWindow();
 
-    void SetMessageText(QString messageType, QString messageText);
+    void DisplayMessage(QString messageType, QString messageText);
 
 private:
     Ui::MessageWindow *ui;

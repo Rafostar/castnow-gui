@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "configwindow.h"
 #include <QFileDialog>
 #include <QDesktopWidget>
 #include <QMediaPlayer>
@@ -15,14 +14,8 @@
 
 using namespace std;
 
-ShellFunctions shellMW;
-ConfigData confDataMW;
-
 QString filePathQS;
 string filePath;
-QString openFileName;
-QString message;
-
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -94,7 +87,7 @@ void MainWindow::StatusBarCastingMsg()
 {
     string baseFilename = filePath.substr(filePath.find_last_of("/\\") + 1);
     QString baseFilenameQS = QString::fromStdString(baseFilename);
-    message = QString("Casting: %1").arg(baseFilenameQS);
+    QString message = QString("Casting: %1").arg(baseFilenameQS);
     ui->statusBar->showMessage(message);
 }
 
@@ -108,12 +101,6 @@ void MainWindow::StatusBarLinkError()
     ui->statusBar->showMessage("Empty link field!");
 }
 
-void MainWindow::DisplayMessage(QString messageType, QString messageText)
-{
-    MsgWinMW->SetMessageText(messageType, messageText);
-    MsgWinMW->show();
-}
-
 
 // ### MAIN WINDOWS BUTTONS ACTIONS ### //
 
@@ -123,7 +110,7 @@ void MainWindow::on_openFileButton_clicked()
     defaultPath += getlogin();
     defaultPath += "/Videos/";
 
-    openFileName = QFileDialog::getOpenFileName(this, tr("Open File"), defaultPath, tr("Media Files (*.mp3 *.mp4 *.mkv *.avi)"));
+    QString openFileName = QFileDialog::getOpenFileName(this, tr("Open File"), defaultPath, tr("Media Files (*.mp3 *.mp4 *.mkv *.avi)"));
     if(openFileName!="")
     {
         ui->insertFilePath->setText(openFileName);
@@ -138,7 +125,7 @@ void MainWindow::on_castFileButton_clicked()
 
         EnableCastingButtons(false);
         StatusBarCastingMsg();
-        shellMW.FileStreamingVAAPI(filePath);
+        shellFcn->FileStreamingVAAPI(filePath);
     }
     else
     {
@@ -154,7 +141,7 @@ void MainWindow::on_castLinkButton_clicked()
 
         EnableCastingButtons(false);
         StatusBarCastingMsg();
-        shellMW.LinkStreaming(filePath);
+        shellFcn->LinkStreaming(filePath);
     }
     else
     {
@@ -172,13 +159,12 @@ void MainWindow::on_actionOpenFile_triggered()
 
 void MainWindow::on_actionConfig_triggered()
 {
-    ConfigWindow *configDialog = new ConfigWindow;
-    configDialog->show();
+    confWin->show();
 }
 
 void MainWindow::on_actionAbout_triggered()
 {
-    aboutDialog->show();
+    aboutWin->show();
 }
 
 void MainWindow::on_actionQuit_triggered()
@@ -199,18 +185,18 @@ void MainWindow::on_castDesktopButton_clicked()
 {
     EnableCastingButtons(false);
     ui->statusBar->showMessage("Started casting desktop");
-    shellMW.DesktopStreamingVAAPI();
+    shellFcn->DesktopStreamingVAAPI();
 }
 
 void MainWindow::on_castFolderButton_clicked()
 {
-    DisplayMessage("Error1", "string messageText");
+    msgWin->DisplayMessage("Error1", "string messageText");
     //this->setDisabled(true);
 }
 
 void MainWindow::on_castDeviceButton_clicked()
 {
-    shellMW.CaptureDeviceStreaming();
+    shellFcn->CaptureDeviceStreaming();
 }
 
 
@@ -219,7 +205,7 @@ void MainWindow::on_castDeviceButton_clicked()
 void MainWindow::on_avStopButton_clicked()
 {
     ui->statusBar->showMessage("Streaming is stopping. Please wait...");
-    shellMW.StopProcessPipe();
+    shellFcn->StopProcessPipe();
     EnableCastingButtons(true);
     ui->statusBar->showMessage("Streaming stopped");
 }

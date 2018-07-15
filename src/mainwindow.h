@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "shellfunctions.h"
+#include "configwindow.h"
 #include "configdata.h"
 #include "messagewindow.h"
 #include "aboutwindow.h"
@@ -70,16 +71,20 @@ private slots:
 
     void on_castFolderButton_clicked();
 
-    void DisplayMessage(QString messageType, QString messageText);
+    //void DisplayMessage(QString messageType, QString messageText);
 
 private:
     Ui::MainWindow *ui;
 
     QMediaPlayer *mediaPlayer = new QMediaPlayer;
 
-    MessageWindow *MsgWinMW = new MessageWindow;
+    ConfigWindow *confWin = new ConfigWindow;
 
-    AboutWindow *aboutDialog = new AboutWindow;
+    MessageWindow *msgWin = new MessageWindow;
+
+    AboutWindow *aboutWin = new AboutWindow;
+
+    ShellFunctions *shellFcn = new ShellFunctions;
 };
 
 #endif // MAINWINDOW_H

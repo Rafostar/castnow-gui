@@ -6,8 +6,7 @@ MessageWindow::MessageWindow(QWidget *parent) :
     ui(new Ui::MessageWindow)
 {
     ui->setupUi(this);
-    //setModal(true);
-    setWindowFlags(Qt::Popup);
+    this->setWindowFlags(Qt::Popup);
 }
 
 MessageWindow::~MessageWindow()
@@ -15,7 +14,8 @@ MessageWindow::~MessageWindow()
     delete ui;
 }
 
-void MessageWindow::SetMessageText(QString messageType, QString messageText)
+void MessageWindow::DisplayMessage(QString messageType, QString messageText)
 {
     ui->messageText->setText(messageText);
+    this->show();
 }
