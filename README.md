@@ -1,5 +1,4 @@
-# castnow-gui WIP
-[![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TFVDFD88KQ322)
+# castnow-gui WIP [![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TFVDFD88KQ322)
 
 castnow-gui - Qt interface for command-line chromecast player
 
@@ -44,6 +43,6 @@ Or manually download castnow-gui file from root of this repo and set it as execu
 - [ ] Camera video streaming
 
 ## Donation
-If you like my work please support it by buying me a cup of coffee :-)
+If you like my work please support it by buying me a cup of coffee :grin:
 
 [![PayPal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TFVDFD88KQ322)
