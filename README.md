@@ -1,5 +1,5 @@
 # castnow-gui WIP
-[![HitCount](http://hits.dwyl.io/Rafostar/castnow-gui.svg)]
+[![HitCount](http://hits.dwyl.io/Rafostar/castnow-gui.svg)](https://github.com/Rafostar/castnow-gui)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TFVDFD88KQ322)
 
 castnow-gui - Qt interface for command-line chromecast player
