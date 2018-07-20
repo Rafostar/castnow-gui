@@ -2,8 +2,8 @@
 #include "ui_mainwindow.h"
 #include <QFileDialog>
 #include <QDesktopWidget>
-#include <QMediaPlayer>
 #include <QVideoWidget>
+#include <QFileSystemWatcher>
 #include <string>
 #include <sstream>
 #include <unistd.h>
@@ -22,6 +22,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    connect(fileWatch, &QFileSystemWatcher::fileChanged, this, &MainWindow::LogFileChanged);
+    ofstream logFile(confData->castnowLogFile.fileName().toStdString());
+    logFile.close();
+    fileWatch->addPath(confData->castnowLogFile.fileName());
 
     connect(mediaPlayer, &QMediaPlayer::mediaChanged, this, &MainWindow::PreviewMediaChanged);
     connect(mediaPlayer, &QMediaPlayer::mediaStatusChanged, this, &MainWindow::PreviewStatusChanged);
@@ -210,6 +215,14 @@ void MainWindow::on_castFolderButton_clicked()
 void MainWindow::on_castDeviceButton_clicked()
 {
     shellFcn->CaptureDeviceStreaming();
+}
+
+
+// ### LOG FILE HANDLING ### //
+
+void MainWindow::LogFileChanged()
+{
+
 }
 
 

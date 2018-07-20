@@ -8,7 +8,7 @@
 #include "aboutwindow.h"
 #include <QMainWindow>
 #include <QMediaPlayer>
-#include <QTimer>
+#include <QFileSystemWatcher>
 
 namespace Ui {
 class MainWindow;
@@ -73,10 +73,14 @@ private slots:
 
     void DisplayMessage(QString messageType, QString messageText);
 
+    void LogFileChanged();
+
 private:
     Ui::MainWindow *ui;
 
     QMediaPlayer *mediaPlayer = new QMediaPlayer;
+
+    QFileSystemWatcher *fileWatch = new QFileSystemWatcher;
 
     ConfigWindow *confWin = new ConfigWindow;
 
