@@ -75,6 +75,8 @@ private slots:
 
     void LogFileChanged();
 
+    string LogFileContent();
+
 private:
     Ui::MainWindow *ui;
 
@@ -91,6 +93,8 @@ private:
     AboutWindow *aboutWin = new AboutWindow;
 
     ShellFunctions *shellFcn = new ShellFunctions;
+
+    int logFileSize = 0;
 };
 
 #endif // MAINWINDOW_H

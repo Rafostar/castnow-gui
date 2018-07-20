@@ -222,7 +222,24 @@ void MainWindow::on_castDeviceButton_clicked()
 
 void MainWindow::LogFileChanged()
 {
+    string lineContent = LogFileContent();
+}
 
+string MainWindow::LogFileContent()
+{
+    QFile readFile(confData->castnowLogFile.fileName());
+    readFile.open(QIODevice::ReadOnly | QIODevice::Text);
+
+    int prevLogFileSize = logFileSize;
+    logFileSize = readFile.size();
+    int logFileDiff = logFileSize - prevLogFileSize;
+
+    readFile.seek(logFileSize - logFileDiff);
+
+    string lineContent = readFile.readLine(logFileDiff).toStdString();
+    readFile.close();
+
+    return lineContent;
 }
 
 
