@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
     int middleHeight = (confData.desktopHeight - w.height()-50)/2;
 
     confData.ProcessConfigFile();
+    confData.castnowLogCommand += confData.castnowLogFile.fileName().toStdString();
 
     w.move(middleWidth,middleHeight);
     w.show();

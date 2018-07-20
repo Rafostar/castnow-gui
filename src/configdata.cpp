@@ -12,6 +12,9 @@ using namespace std;
 
 string configFilePath;
 
+string ConfigData::castnowLogCommand = "| grep --line-buffered -Eo '[A-Z][a-z]{1,10}' | grep --line-buffered -v 'State' > ";
+QFile ConfigData::castnowLogFile("/tmp/castnow.log");
+
 // ### DEFAULT VALUES ### //
 string ConfigData::defaultCastnowPath = "castnow";
 string ConfigData::defaultFfmpegPath = "ffmpeg";

@@ -34,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    confData->castnowLogFile.remove();
 }
 
 

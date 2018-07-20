@@ -2,6 +2,7 @@
 #define CONFIGDATA_H
 
 #include <QDesktopWidget>
+#include <QFile>
 #include <string>
 
 using namespace std;
@@ -20,6 +21,10 @@ public:
     static double fileBitrate, fileAudioDelay, desktopBitrate, desktopAudioDelay;
 
     static double defaultFileAudioDelay, defaultFileBitrate, defaultDesktopAudioDelay, defaultDesktopBitrate;
+
+    static QFile castnowLogFile;
+
+    static string castnowLogCommand;
 
     bool CheckConfigFile();
 

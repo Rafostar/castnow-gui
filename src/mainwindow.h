@@ -80,6 +80,8 @@ private:
 
     ConfigWindow *confWin = new ConfigWindow;
 
+    ConfigData *confData = new ConfigData;
+
     MessageWindow *msgWin = new MessageWindow;
 
     AboutWindow *aboutWin = new AboutWindow;
