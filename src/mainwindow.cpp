@@ -33,6 +33,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    if(ui->castFileButton->isEnabled() == false)
+    {
+        shellFcn->StopProcessPipe();
+    }
+
     delete ui;
     confData->castnowLogFile.remove();
 }
