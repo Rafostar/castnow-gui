@@ -95,6 +95,8 @@ private:
     ShellFunctions *shellFcn = new ShellFunctions;
 
     int logFileSize = 0;
+
+    string prevLineContent;
 };
 
 #endif // MAINWINDOW_H

@@ -223,6 +223,19 @@ void MainWindow::on_castDeviceButton_clicked()
 void MainWindow::LogFileChanged()
 {
     string lineContent = LogFileContent();
+
+    if(lineContent == prevLineContent) return;
+
+    prevLineContent = lineContent;
+
+    if(lineContent == "Scanning")
+    {
+        ui->avProgressBar->setFormat("Loading...");
+    }
+    else if(lineContent == "Error")
+    {
+        on_avStopButton_clicked();
+    }
 }
 
 string MainWindow::LogFileContent()
@@ -250,6 +263,7 @@ void MainWindow::on_avStopButton_clicked()
     ui->statusBar->showMessage("Streaming is stopping. Please wait...");
     shellFcn->StopProcessPipe();
     EnableCastingButtons(true);
+    ui->avProgressBar->setFormat("00:00:00");
     ui->statusBar->showMessage("Streaming stopped");
 }
 
