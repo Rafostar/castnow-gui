@@ -13,6 +13,7 @@ ConfigData confDataSF;
 
 FILE* shellProcess;
 
+string castnowLog="| grep --line-buffered -Eo '[A-Z][a-z]{1,10}' | grep --line-buffered -v 'State' > /tmp/castnow.log";
 char ffmpegQuit[] = {'q'};
 
 void ShellFunctions::CreateProcessPipe(const char* systemCommand)
@@ -45,7 +46,7 @@ void ShellFunctions::FileStreamingVAAPI(string filePath)
        << " -i '"<< filePath << "'"
        << " -map 0:v -map 1:a"
        << " -vaapi_device '/dev/dri/renderD128' -vf 'format=nv12,hwupload' -c:v h264_vaapi -level:v 4.1 -b:v " << confDataSF.fileBitrate
-       << "M -c:a copy -f matroska - | " << confDataSF.castnowPath << " --quiet -";
+       << "M -c:a copy -f matroska - | " << confDataSF.castnowPath << " - " << castnowLog;
 
     string tmp = ss.str();
     //cout << "Running: " << tmp << endl; // for debug
