@@ -47,9 +47,9 @@
   <widget class="QLabel" name="ffmpegPathLabel">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>80</y>
-     <width>61</width>
+     <width>71</width>
      <height>31</height>
     </rect>
    </property>
