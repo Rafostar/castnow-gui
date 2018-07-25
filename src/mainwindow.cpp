@@ -178,6 +178,8 @@ void MainWindow::on_actionOpenFile_triggered()
 
 void MainWindow::on_actionConfig_triggered()
 {
+    confData->ProcessConfigFile();
+    confWin->UpdateConfigWindowValues();
     confWin->show();
 }
 
