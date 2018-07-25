@@ -19,14 +19,16 @@ SOURCES += main.cpp\
     configwindow.cpp \
     configdata.cpp \
     aboutwindow.cpp \
-    messagewindow.cpp
+    messagewindow.cpp \
+    visualizerconfig.cpp
 
 HEADERS  += mainwindow.h \
     shellfunctions.h \
     configwindow.h \
     configdata.h \
     aboutwindow.h \
-    messagewindow.h
+    messagewindow.h \
+    visualizerconfig.h
 
 FORMS    += mainwindow.ui \
     configwindow.ui \
