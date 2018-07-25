@@ -29,6 +29,12 @@ QString queueSizeInfoText = "Sets the maximum number of queued packets when read
                             "Packets may be discarded if they are not read in a timely manner.\n"
                             "Raising this value can avoid it.";
 
+QString visualizerAutoInfoText = "Shows music visualizer only when cd art is not available.";
+
+QString visualizerAlwaysInfoText = "Always shows music visualizer.";
+
+QString visualizerDisabledInfoText = "Never shows music visualizer (lower cpu usage).";
+
 ConfigWindow::ConfigWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ConfigWindow)
@@ -42,6 +48,10 @@ ConfigWindow::ConfigWindow(QWidget *parent) :
     ui->doubleSpinBoxDesktopBitrate->setToolTip(bitrateInfoText);
     ui->doubleSpinBoxDesktopOffset->setToolTip(audioOffsetText);
     ui->spinBoxDesktopQueueSize->setToolTip(queueSizeInfoText);
+
+    ui->visAutoRadioButton->setToolTip(visualizerAutoInfoText);
+    ui->visAlwaysRadioButton->setToolTip(visualizerAlwaysInfoText);
+    ui->visDisabledRadioButton->setToolTip(visualizerDisabledInfoText);
 }
 
 ConfigWindow::~ConfigWindow()
