@@ -21,6 +21,7 @@ string ConfigData::defaultFfmpegPath = "ffmpeg";
 
 double ConfigData::defaultFileBitrate = 4;
 double ConfigData::defaultFileAudioDelay = 0;
+int ConfigData::defaultVisualizerMode = 1;
 
 int ConfigData::defaultDesktopFramerate = 30;
 double ConfigData::defaultDesktopBitrate = 4;
@@ -36,6 +37,7 @@ string ConfigData::ffmpegPath = ConfigData::defaultFfmpegPath;
 
 double ConfigData::fileBitrate = ConfigData::defaultFileBitrate;
 double ConfigData::fileAudioDelay = ConfigData::defaultFileAudioDelay;
+int ConfigData::visualizerMode = ConfigData::defaultVisualizerMode;
 
 int ConfigData::desktopFramerate = ConfigData::defaultDesktopFramerate;
 double ConfigData::desktopBitrate = ConfigData::defaultDesktopBitrate;
@@ -73,6 +75,7 @@ void ConfigData::ReadConfigFile()
                 else if(configParamName == "ffmpegPath") ffmpegPath = configParamValue;
                 else if(configParamName == "fileBitrate") fileBitrate = stod(configParamValue);
                 else if(configParamName == "fileAudioDelay") fileAudioDelay = stod(configParamValue);
+                else if(configParamName == "visualizerMode") visualizerMode = stoi(configParamValue);
                 else if(configParamName == "desktopFramerate") desktopFramerate = stoi(configParamValue);
                 else if(configParamName == "desktopBitrate") desktopBitrate = stod(configParamValue);
                 else if(configParamName == "desktopAudioDelay") desktopAudioDelay = stod(configParamValue);
@@ -92,6 +95,7 @@ void ConfigData::CreateDefaultConfigFile()
                << "ffmpegPath=" << defaultFfmpegPath << endl
                << "fileBitrate=" << defaultFileBitrate << endl
                << "fileAudioDelay=" << defaultFileAudioDelay << endl
+               << "visualizerMode=" << defaultVisualizerMode << endl
                << "desktopFramerate=" << defaultDesktopFramerate << endl
                << "desktopBitrate=" << defaultDesktopBitrate << endl
                << "desktopAudioDelay=" << defaultDesktopAudioDelay << endl
@@ -106,6 +110,7 @@ void ConfigData::SaveConfigurationToFile()
                << "ffmpegPath=" << ffmpegPath << endl
                << "fileBitrate=" << fileBitrate << endl
                << "fileAudioDelay=" << fileAudioDelay << endl
+               << "visualizerMode=" << visualizerMode << endl
                << "desktopFramerate=" << desktopFramerate << endl
                << "desktopBitrate=" << desktopBitrate << endl
                << "desktopAudioDelay=" << desktopAudioDelay << endl

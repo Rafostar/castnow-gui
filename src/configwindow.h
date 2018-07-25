@@ -16,6 +16,8 @@ public:
     explicit ConfigWindow(QWidget *parent = 0);
     ~ConfigWindow();
 
+    void UpdateConfigWindowValues();
+
 private slots:
     void on_doubleSpinBoxFileOffset_valueChanged(const QString &arg1);
 
@@ -23,14 +25,11 @@ private slots:
 
     void on_buttonBoxConfig_clicked(QAbstractButton *button);
 
-    void UpdateConfigWindowValues();
-
     void UpdateUsedValues();
 
     void RestoreDefaultValues();
 
 private:
-
     Ui::ConfigWindow *ui;
 };
 

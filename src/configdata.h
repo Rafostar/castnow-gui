@@ -14,9 +14,9 @@ public:
 
     static string defaultCastnowPath, defaultFfmpegPath;
 
-    static int desktopWidth, desktopHeight, desktopFramerate, threadQueueSize;
+    static int desktopWidth, desktopHeight, desktopFramerate, threadQueueSize, visualizerMode;
 
-    static int defaultDesktopFramerate, defaultThreadQueueSize;
+    static int defaultDesktopFramerate, defaultThreadQueueSize, defaultVisualizerMode;
 
     static double fileBitrate, fileAudioDelay, desktopBitrate, desktopAudioDelay;
 

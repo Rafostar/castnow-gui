@@ -33,10 +33,7 @@ ConfigWindow::ConfigWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ConfigWindow)
 {
-    confDataCW.ProcessConfigFile();
     ui->setupUi(this);
-
-    UpdateConfigWindowValues();
 
     ui->doubleSpinBoxFileBitrate->setToolTip(bitrateInfoText);
     ui->doubleSpinBoxFileOffset->setToolTip(audioOffsetText);
@@ -85,6 +82,17 @@ void ConfigWindow::UpdateConfigWindowValues()
     ui->doubleSpinBoxFileBitrate->setValue(confDataCW.fileBitrate);
     ui->doubleSpinBoxFileOffset->setValue(confDataCW.fileAudioDelay);
 
+    int VisMode = confDataCW.visualizerMode;
+    switch (VisMode)
+    {
+        case 0 : ui->visDisabledRadioButton->click();
+                 break;
+        case 1 : ui->visAutoRadioButton->click();
+                 break;
+        case 2 : ui->visAlwaysRadioButton->click();
+                 break;
+    }
+
     ui->spinBoxDesktopFramerate->setValue(confDataCW.desktopFramerate);
     ui->doubleSpinBoxDesktopBitrate->setValue(confDataCW.desktopBitrate);
     ui->doubleSpinBoxDesktopOffset->setValue(confDataCW.desktopAudioDelay);
@@ -116,6 +124,19 @@ void ConfigWindow::UpdateUsedValues()
 
     confDataCW.fileBitrate = ui->doubleSpinBoxFileBitrate->value();
     confDataCW.fileAudioDelay = ui->doubleSpinBoxFileOffset->value();
+
+    if(ui->visDisabledRadioButton->isChecked())
+    {
+        confDataCW.visualizerMode = 0;
+    }
+    else if(ui->visAutoRadioButton->isChecked())
+    {
+        confDataCW.visualizerMode = 1;
+    }
+    else if(ui->visAlwaysRadioButton->isChecked())
+    {
+        confDataCW.visualizerMode = 2;
+    }
 
     confDataCW.desktopFramerate = ui->spinBoxDesktopFramerate->value();
     confDataCW.desktopBitrate = ui->doubleSpinBoxDesktopBitrate->value();
