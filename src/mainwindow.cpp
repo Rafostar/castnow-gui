@@ -197,7 +197,10 @@ void MainWindow::on_actionQuit_triggered()
 void MainWindow::on_castCDButton_clicked()
 {
     // temporary for player testing:
-    SetMediaPreview("video", "/tmp/test.mp4");
+    //SetMediaPreview("video", "/tmp/test.mp4");
+
+    EnableCastingButtons(false);
+    shellFcn->MusicVisualizerStreaming("/tmp/test.flac");
 }
 
 void MainWindow::on_castDesktopButton_clicked()

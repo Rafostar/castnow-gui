@@ -1,5 +1,6 @@
 #include "shellfunctions.h"
 #include "configdata.h"
+#include "visualizerconfig.h"
 #include <QFileDialog>
 #include <string>
 #include <sstream>
@@ -10,6 +11,7 @@
 using namespace std;
 
 ConfigData confDataSF;
+VisualizerConfig VisCfgSF;
 
 FILE* shellProcess;
 
@@ -18,7 +20,6 @@ char ffmpegQuit[] = {'q'};
 void ShellFunctions::CreateProcessPipe(const char* systemCommand)
 {
     shellProcess = popen(systemCommand, "w");
-    //cout << "Created new ffmpeg process" << endl;
 }
 
 void ShellFunctions::SendKeyToProcessPipe(char sendKey[])
@@ -39,14 +40,14 @@ void ShellFunctions::FileStreamingVAAPI(string filePath)
     int startDelay = 0; // until "play from specified time" function is implemented
 
     stringstream ss;
-    ss << confDataSF.ffmpegPath
-       << " -hide_banner -ss " << startDelay
+    ss << "'" << confDataSF.ffmpegPath
+       << "' -hide_banner -ss " << startDelay
        << " -i '"<< filePath << "'"
        << " -itsoffset " << confDataSF.fileAudioDelay
        << " -i '"<< filePath << "'"
        << " -map 0:v -map 1:a"
        << " -vaapi_device '/dev/dri/renderD128' -vf 'format=nv12,hwupload' -c:v h264_vaapi -level:v 4.1 -b:v " << confDataSF.fileBitrate
-       << "M -c:a copy -f matroska - | " << confDataSF.castnowPath << " - " << confDataSF.castnowLogCommand;
+       << "M -c:a copy -f matroska - | '" << confDataSF.castnowPath << "' - " << confDataSF.castnowLogCommand;
 
     string tmp = ss.str();
     //cout << "Running: " << tmp << endl; // for debug
@@ -87,19 +88,24 @@ void ShellFunctions::DesktopStreamingVAAPI()
     double totalDelay = startDelay + confDataSF.desktopAudioDelay;
 
     stringstream ss;
-    ss << confDataSF.ffmpegPath
-       << " -hide_banner -ss " << startDelay
+    ss << "'" << confDataSF.ffmpegPath
+       << "' -hide_banner -ss " << startDelay
        << " -video_size " << confDataSF.desktopWidth << "x" << confDataSF.desktopHeight
        << " -framerate " << confDataSF.desktopFramerate
        << " -f x11grab -thread_queue_size " << confDataSF.threadQueueSize
        << " -i :0.0 -f alsa -thread_queue_size " << confDataSF.threadQueueSize
        << " -ac 2 -itsoffset " << totalDelay
        << " -i default -vaapi_device '/dev/dri/renderD128' -vf 'format=nv12,hwupload' -c:v h264_vaapi -level:v 4.1 -b:v " << confDataSF.desktopBitrate
-       << "M -c:a flac -f matroska - | " << confDataSF.castnowPath << " --quiet -";
+       << "M -c:a flac -f matroska - | '" << confDataSF.castnowPath << "' --quiet -";
 
     string tmp = ss.str();
     //cout << "Running: " << tmp << endl; // for debug
     const char* castDesktop = tmp.c_str();
 
     CreateProcessPipe(castDesktop);
+}
+
+void ShellFunctions::MusicVisualizerStreaming(string filePath)
+{
+    VisCfgSF.MusicVisualizer(filePath);
 }

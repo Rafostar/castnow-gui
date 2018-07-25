@@ -29,6 +29,8 @@ public:
     void DesktopStreamingVAAPI();
 
     void CaptureDeviceStreaming();
+
+    void MusicVisualizerStreaming(string filePath);
 };
 
 #endif // SHELLFUNCTIONS_H
