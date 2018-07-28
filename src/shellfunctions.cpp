@@ -61,7 +61,7 @@ void ShellFunctions::LinkStreaming(string link)
     //Need to add to youtube-dl option force H264 here!!!
 
     stringstream ss;
-    ss << "youtube-dl '" << link << "' -o - | " << confDataSF.castnowPath << " --quiet -";
+    ss << "youtube-dl '" << link << "' -o - | '" << confDataSF.castnowPath << "' - " << confDataSF.castnowLogCommand;
 
     string tmp = ss.str();
     //cout << "Running: " << tmp << endl; // for debug
