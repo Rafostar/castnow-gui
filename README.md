@@ -16,14 +16,14 @@ Please make sure you have all of the above installed before running castnow-gui.
 
 Some of them might be available from your linux distro repos.
 Try installing them with your package manager or follow the links for more info.
-
-**Currently VAAPI encoding is required.** Make sure you have it installed.
+Currently **VAAPI encoding _is required_.** Make sure you have it installed.
 More info and how to install VAAPI [here](https://wiki.archlinux.org/index.php/Hardware_video_acceleration).
 
 ### Desktop streaming noise fix
 Currently **default audio recording device** is used when streaming desktop.
 If you are using **laptop** with build-in mic then usually default recording device is **microphone**.
-If it is then you might hear **_amplified buzzing_** from your mic in your TV (better reduce TV volume before trying).
+If it is then you might hear **_amplified buzzing_** from your mic in your TV (better reduce TV volume to minimum before trying).
+
 To fix this change default input device in your system configuration (using utility like **PulseAudio Volume Control**).
 
 ### Install or update
