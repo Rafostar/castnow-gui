@@ -123,7 +123,7 @@ void MainWindow::on_castFileButton_clicked()
     if(CheckPath("file") == 0)
     {
         EnableCastingButtons(false);
-        shellFcn->FileStreamingVAAPI(filePath);
+        shellFcn->FileStreamingVAAPI(filePath); //Creates process with log
     }
     else
     {
@@ -228,6 +228,8 @@ string MainWindow::LogFileContent()
 
     int prevLogFileSize = logFileSize;
     logFileSize = readFile.size();
+    if(prevLogFileSize > logFileSize) prevLogFileSize = 0;
+
     int logFileDiff = logFileSize - prevLogFileSize;
 
     readFile.seek(logFileSize - logFileDiff);
