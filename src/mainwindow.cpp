@@ -137,6 +137,7 @@ void MainWindow::on_castLinkButton_clicked()
     if(CheckPath("link") == 0)
     {
         EnableCastingButtons(false);
+        SetMediaPreview("link", filePathQS);
         shellFcn->LinkStreaming(filePath);
     }
     else
@@ -178,6 +179,7 @@ void MainWindow::on_actionQuit_triggered()
 void MainWindow::on_castCDButton_clicked()
 {
     EnableCastingButtons(false);
+    SetMediaPreview("cd", filePathQS);
     ui->avProgressBar->setFormat("Casting Audio CD");
     shellFcn->AudioCDStreaming();
 }
@@ -185,6 +187,7 @@ void MainWindow::on_castCDButton_clicked()
 void MainWindow::on_castDesktopButton_clicked()
 {
     EnableCastingButtons(false);
+    SetMediaPreview("desktop", filePathQS);
     ui->avProgressBar->setFormat("Casting Desktop");
     shellFcn->DesktopStreamingVAAPI();
 }
@@ -197,6 +200,7 @@ void MainWindow::on_castFolderButton_clicked()
 void MainWindow::on_castDeviceButton_clicked()
 {
     EnableCastingButtons(false);
+    SetMediaPreview("device", filePathQS);
     ui->avProgressBar->setFormat("Casting Device");
     shellFcn->CaptureDeviceStreaming();
 }
@@ -298,19 +302,19 @@ void MainWindow::SetMediaPreview(string mediaType, QString path = "none")
     }
     else if(mediaType == "link")
     {
-
+        mediaPlayer->setMedia(QUrl::fromLocalFile(""));
     }
     else if(mediaType == "cd")
     {
-
+        mediaPlayer->setMedia(QUrl::fromLocalFile(""));
     }
     else if(mediaType == "desktop")
     {
-
+        mediaPlayer->setMedia(QUrl::fromLocalFile(""));
     }
     else if(mediaType == "device")
     {
-
+        mediaPlayer->setMedia(QUrl::fromLocalFile(""));
     }
 }
 
