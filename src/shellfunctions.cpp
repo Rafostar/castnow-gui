@@ -107,6 +107,25 @@ void ShellFunctions::DesktopStreamingVAAPI()
     CreateProcessPipe(castDesktop);
 }
 
+void ShellFunctions::AudioCDStreaming()
+{
+    int driveSpeed = 8;
+
+    stringstream ss;
+    ss << "'" << confData->ffmpegPath
+       << "' -hide_banner"
+       << " -f libcdio"
+       << " -speed " << driveSpeed
+       << " -i /dev/sr0"
+       << " -f wav - | '" << confData->castnowPath << "' - " << confData->castnowLogCommand;
+
+    string tmp = ss.str();
+    cout << "Running: " << tmp << endl; // for debug
+    const char* castLink = tmp.c_str();
+
+    CreateProcessPipe(castLink);
+}
+
 void ShellFunctions::MusicVisualizerStreaming(string filePath)
 {
     string visConfig = visCfg->MusicVisualizer(filePath);

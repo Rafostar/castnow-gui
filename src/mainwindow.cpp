@@ -123,6 +123,7 @@ void MainWindow::on_castFileButton_clicked()
     if(CheckPath("file") == 0)
     {
         EnableCastingButtons(false);
+        SetMediaPreview("video", filePathQS);
         shellFcn->FileStreamingVAAPI(filePath); //Creates process with log
     }
     else
@@ -176,11 +177,11 @@ void MainWindow::on_actionQuit_triggered()
 
 void MainWindow::on_castCDButton_clicked()
 {
-    // temporary for player testing:
-    //SetMediaPreview("video", "/tmp/test.mp4");
-
     EnableCastingButtons(false);
-    shellFcn->MusicVisualizerStreaming("/tmp/test.flac");
+    ui->avProgressBar->setFormat("Casting Audio CD");
+    shellFcn->AudioCDStreaming();
+
+    //shellFcn->MusicVisualizerStreaming("/tmp/test.flac");
 }
 
 void MainWindow::on_castDesktopButton_clicked()
@@ -192,7 +193,7 @@ void MainWindow::on_castDesktopButton_clicked()
 
 void MainWindow::on_castFolderButton_clicked()
 {
-    DisplayMessage("Error1", "string messageText");
+    DisplayMessage("Error", "This Message Should Not Appear");
 }
 
 void MainWindow::on_castDeviceButton_clicked()
@@ -217,9 +218,13 @@ void MainWindow::LogFileChanged()
     {
         ui->avProgressBar->setFormat("Loading...");
     }
-    else if(lineContent == "Playing???")
+    else if(lineContent == "Playing")
     {
-        SetMediaPreview("video", filePathQS);
+        mediaPlayer->play();
+    }
+    else if(lineContent == "Buffering")
+    {
+        mediaPlayer->pause();
     }
     else if(lineContent == "Error")
     {
@@ -251,6 +256,7 @@ string MainWindow::LogFileContent()
 
 void MainWindow::on_avStopButton_clicked()
 {
+    mediaPlayer->stop();
     shellFcn->StopProcessPipe();
     EnableCastingButtons(true);
     ui->avProgressBar->setFormat("00:00:00");
@@ -282,7 +288,7 @@ void MainWindow::SetMediaPreview(string mediaType, QString path = "none")
     if(mediaType == "video")
     {
         mediaPlayer->setMedia(QUrl::fromLocalFile(path));
-        mediaPlayer->play();
+        //mediaPlayer->play();
     }
     else if(mediaType == "picture")
     {
@@ -336,11 +342,11 @@ void MainWindow::PreviewStatusChanged()
                 ui->videoFrame->setAutoFillBackground(false);
                 ui->videoWidget->show();
                 break;
-        case 7: ui->avProgressBar->setFormat("00:00:00");
-                ui->avProgressBar->setMaximum(1);
+        case 7: ui->avProgressBar->setMaximum(1);
                 ui->avProgressBar->setValue(0);
                 ui->videoFrame->setStyleSheet("border : 2px solid;");
                 ChangePreviewImage(":/player_previews/images/av_no_media.png");
+                on_avStopButton_clicked();
                 break;
         case 8: cout << "Cannot Play This Media!"; //Needs better error handling
                 break;
@@ -349,7 +355,8 @@ void MainWindow::PreviewStatusChanged()
 
 void MainWindow::ChangePreviewImage(const char *imgResource)
 {
-    QPalette palette = ui->videoFrame->palette();
+    QPalette palette;
+    palette = ui->videoFrame->palette();
     palette.setBrush(QPalette::Window, QBrush(QPixmap(imgResource)));
     ui->videoFrame->setPalette(palette);
     ui->videoFrame->setAutoFillBackground(true);

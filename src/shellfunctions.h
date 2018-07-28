@@ -24,6 +24,8 @@ public:
 
     void CaptureDeviceStreaming();
 
+    void AudioCDStreaming();
+
     void MusicVisualizerStreaming(string filePath);
 
 private:
