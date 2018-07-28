@@ -88,10 +88,10 @@ void MainWindow::EnableCastingButtons(bool state)
     //ui->castFolderButton->setEnabled(state);
     ui->castDeviceButton->setEnabled(state);
 
-    ui->avToggleButton->setEnabled(!state);
+    //ui->avToggleButton->setEnabled(!state);
     ui->avStopButton->setEnabled(!state);
-    ui->avNextButton->setEnabled(!state);
-    ui->avPreviousButton->setEnabled(!state);
+    //ui->avNextButton->setEnabled(!state);
+    //ui->avPreviousButton->setEnabled(!state);
 }
 
 void MainWindow::DisplayMessage(QString messageType, QString messageText)
