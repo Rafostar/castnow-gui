@@ -92,11 +92,15 @@ void ShellFunctions::DesktopStreamingVAAPI()
 
     stringstream ss;
     ss << "'" << confData->ffmpegPath
-       << "' -hide_banner -ss " << startDelay
+       << "' -hide_banner"
        << " -video_size " << confData->desktopWidth << "x" << confData->desktopHeight
        << " -framerate " << confData->desktopFramerate
-       << " -f x11grab -thread_queue_size " << confData->threadQueueSize
-       << " -i :0.0 -f alsa -thread_queue_size " << confData->threadQueueSize
+       << " -f x11grab"
+       << " -thread_queue_size " << confData->threadQueueSize
+       << " -i :0.0"
+       << " -ss " << startDelay
+       << " -f alsa"
+       << " -thread_queue_size " << confData->threadQueueSize
        << " -ac 2 -itsoffset " << totalDelay
        << " -i default -vaapi_device '/dev/dri/renderD128' -vf 'format=nv12,hwupload' -c:v h264_vaapi -level:v 4.1 -b:v " << confData->desktopBitrate
        << "M -c:a flac -f matroska - | '" << confData->castnowPath << "' - " << confData->castnowLogCommand;
