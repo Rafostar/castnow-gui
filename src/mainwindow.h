@@ -49,12 +49,6 @@ private slots:
 
     int CheckPath(string type);
 
-    void StatusBarCastingMsg();
-
-    void StatusBarFileError();
-
-    void StatusBarLinkError();
-
     void SetMediaPreview(string mediaType, QString path);
 
     void PreviewMediaChanged();
@@ -83,8 +77,6 @@ private:
     QMediaPlayer *mediaPlayer = new QMediaPlayer;
 
     QFileSystemWatcher *fileWatch = new QFileSystemWatcher;
-
-    ConfigWindow *confWin = new ConfigWindow;
 
     ConfigData *confData = new ConfigData;
 

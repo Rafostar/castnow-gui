@@ -94,24 +94,6 @@ void MainWindow::EnableCastingButtons(bool state)
     ui->avPreviousButton->setEnabled(!state);
 }
 
-void MainWindow::StatusBarCastingMsg()
-{
-    string baseFilename = filePath.substr(filePath.find_last_of("/\\") + 1);
-    QString baseFilenameQS = QString::fromStdString(baseFilename);
-    QString message = QString("Casting: %1").arg(baseFilenameQS);
-    ui->statusBar->showMessage(message);
-}
-
-void MainWindow::StatusBarFileError()
-{
-    ui->statusBar->showMessage("Empty file path field!");
-}
-
-void MainWindow::StatusBarLinkError()
-{
-    ui->statusBar->showMessage("Empty link field!");
-}
-
 void MainWindow::DisplayMessage(QString messageType, QString messageText)
 {
     int posX = this->pos().x() + ((this->width() - msgWin->width()) / 2);
@@ -140,15 +122,12 @@ void MainWindow::on_castFileButton_clicked()
 {
     if(CheckPath("file") == 0)
     {
-        //system(shellMW.stopRunningScreen); //must be here to stop screen session after reopening castnow-gui
-
         EnableCastingButtons(false);
-        StatusBarCastingMsg();
         shellFcn->FileStreamingVAAPI(filePath);
     }
     else
     {
-        StatusBarFileError();
+        DisplayMessage("Error","Empty file path field!");
     }
 }
 
@@ -156,15 +135,12 @@ void MainWindow::on_castLinkButton_clicked()
 {
     if(CheckPath("link") == 0)
     {
-        //system(shellMW.stopRunningScreen); //must be here to stop screen session after reopening castnow-gui
-
         EnableCastingButtons(false);
-        StatusBarCastingMsg();
         shellFcn->LinkStreaming(filePath);
     }
     else
     {
-        StatusBarLinkError();
+        DisplayMessage("Error","Empty link field!");
     }
 }
 
@@ -178,6 +154,8 @@ void MainWindow::on_actionOpenFile_triggered()
 
 void MainWindow::on_actionConfig_triggered()
 {
+    ConfigWindow *confWin = new ConfigWindow;
+
     confData->ProcessConfigFile();
     confWin->UpdateConfigWindowValues();
     confWin->show();
@@ -208,7 +186,7 @@ void MainWindow::on_castCDButton_clicked()
 void MainWindow::on_castDesktopButton_clicked()
 {
     EnableCastingButtons(false);
-    ui->statusBar->showMessage("Started casting desktop");
+    ui->avProgressBar->setFormat("Started casting desktop");
     shellFcn->DesktopStreamingVAAPI();
 }
 
@@ -265,11 +243,10 @@ string MainWindow::LogFileContent()
 
 void MainWindow::on_avStopButton_clicked()
 {
-    ui->statusBar->showMessage("Streaming is stopping. Please wait...");
+    ui->avProgressBar->setFormat("Streaming is stopping. Please wait...");
     shellFcn->StopProcessPipe();
     EnableCastingButtons(true);
     ui->avProgressBar->setFormat("00:00:00");
-    ui->statusBar->showMessage("Streaming stopped");
 }
 
 void MainWindow::on_avToggleButton_clicked()
