@@ -4,6 +4,7 @@
 #include <QDesktopWidget>
 #include <QFile>
 #include <string>
+#include <sstream>
 
 using namespace std;
 

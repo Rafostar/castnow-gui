@@ -1,6 +1,4 @@
 #include "shellfunctions.h"
-#include "configdata.h"
-#include "visualizerconfig.h"
 #include <QFileDialog>
 #include <string>
 #include <sstream>
@@ -9,9 +7,6 @@
 #include <fstream>
 
 using namespace std;
-
-ConfigData confDataSF;
-VisualizerConfig VisCfgSF;
 
 FILE* shellProcess;
 
@@ -40,14 +35,14 @@ void ShellFunctions::FileStreamingVAAPI(string filePath)
     int startDelay = 0; // until "play from specified time" function is implemented
 
     stringstream ss;
-    ss << "'" << confDataSF.ffmpegPath
+    ss << "'" << confData->ffmpegPath
        << "' -hide_banner -ss " << startDelay
        << " -i '"<< filePath << "'"
-       << " -itsoffset " << confDataSF.fileAudioDelay
+       << " -itsoffset " << confData->fileAudioDelay
        << " -i '"<< filePath << "'"
        << " -map 0:v -map 1:a"
-       << " -vaapi_device '/dev/dri/renderD128' -vf 'format=nv12,hwupload' -c:v h264_vaapi -level:v 4.1 -b:v " << confDataSF.fileBitrate
-       << "M -c:a copy -f matroska - | '" << confDataSF.castnowPath << "' - " << confDataSF.castnowLogCommand;
+       << " -vaapi_device '/dev/dri/renderD128' -vf 'format=nv12,hwupload' -c:v h264_vaapi -level:v 4.1 -b:v " << confData->fileBitrate
+       << "M -c:a copy -f matroska - | '" << confData->castnowPath << "' - " << confData->castnowLogCommand;
 
     string tmp = ss.str();
     //cout << "Running: " << tmp << endl; // for debug
@@ -61,7 +56,7 @@ void ShellFunctions::LinkStreaming(string link)
     //Need to add to youtube-dl option force H264 here!!!
 
     stringstream ss;
-    ss << "youtube-dl '" << link << "' -o - | '" << confDataSF.castnowPath << "' - " << confDataSF.castnowLogCommand;
+    ss << "youtube-dl '" << link << "' -o - | '" << confData->castnowPath << "' - " << confData->castnowLogCommand;
 
     string tmp = ss.str();
     //cout << "Running: " << tmp << endl; // for debug
@@ -73,12 +68,12 @@ void ShellFunctions::LinkStreaming(string link)
 void ShellFunctions::CaptureDeviceStreaming()
 {
     stringstream ss;
-    ss << "'" << confDataSF.ffmpegPath
+    ss << "'" << confData->ffmpegPath
        << "' -hide_banner -f v4l2"
        << " -framerate 30"
        << " -video_size 640x480"
        << " -i /dev/video0"
-       << " -f matroska - | '" << confDataSF.castnowPath << "' - " << confDataSF.castnowLogCommand;
+       << " -f matroska - | '" << confData->castnowPath << "' - " << confData->castnowLogCommand;
 
     string tmp = ss.str();
     //cout << "Running: " << tmp << endl; // for debug
@@ -90,18 +85,18 @@ void ShellFunctions::CaptureDeviceStreaming()
 void ShellFunctions::DesktopStreamingVAAPI()
 {
     double startDelay = 5;
-    double totalDelay = startDelay + confDataSF.desktopAudioDelay;
+    double totalDelay = startDelay + confData->desktopAudioDelay;
 
     stringstream ss;
-    ss << "'" << confDataSF.ffmpegPath
+    ss << "'" << confData->ffmpegPath
        << "' -hide_banner -ss " << startDelay
-       << " -video_size " << confDataSF.desktopWidth << "x" << confDataSF.desktopHeight
-       << " -framerate " << confDataSF.desktopFramerate
-       << " -f x11grab -thread_queue_size " << confDataSF.threadQueueSize
-       << " -i :0.0 -f alsa -thread_queue_size " << confDataSF.threadQueueSize
+       << " -video_size " << confData->desktopWidth << "x" << confData->desktopHeight
+       << " -framerate " << confData->desktopFramerate
+       << " -f x11grab -thread_queue_size " << confData->threadQueueSize
+       << " -i :0.0 -f alsa -thread_queue_size " << confData->threadQueueSize
        << " -ac 2 -itsoffset " << totalDelay
-       << " -i default -vaapi_device '/dev/dri/renderD128' -vf 'format=nv12,hwupload' -c:v h264_vaapi -level:v 4.1 -b:v " << confDataSF.desktopBitrate
-       << "M -c:a flac -f matroska - | '" << confDataSF.castnowPath << "' - " << confDataSF.castnowLogCommand;
+       << " -i default -vaapi_device '/dev/dri/renderD128' -vf 'format=nv12,hwupload' -c:v h264_vaapi -level:v 4.1 -b:v " << confData->desktopBitrate
+       << "M -c:a flac -f matroska - | '" << confData->castnowPath << "' - " << confData->castnowLogCommand;
 
     string tmp = ss.str();
     //cout << "Running: " << tmp << endl; // for debug
@@ -112,5 +107,8 @@ void ShellFunctions::DesktopStreamingVAAPI()
 
 void ShellFunctions::MusicVisualizerStreaming(string filePath)
 {
-    VisCfgSF.MusicVisualizer(filePath);
+    string visConfig = visCfg->MusicVisualizer(filePath);
+    const char* castVisualizer = visConfig.c_str();
+
+    CreateProcessPipe(castVisualizer);
 }

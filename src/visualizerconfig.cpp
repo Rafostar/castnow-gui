@@ -1,9 +1,4 @@
 #include "visualizerconfig.h"
-#include <string>
-#include <sstream>
-#include <unistd.h>
-#include <iostream>
-#include <fstream>
 
 using namespace std;
 
@@ -29,7 +24,7 @@ string showcqt_tlength = "'st(0,0.17); 384*tc / (384 / ld(0) + tc*f /(1-ld(0))) 
 
 string video_format = "yuv420p";
 
-void VisualizerConfig::MusicVisualizer(string filePath)
+string VisualizerConfig::MusicVisualizer(string filePath)
 {
     double startDelay = 0;
 
@@ -62,8 +57,5 @@ void VisualizerConfig::MusicVisualizer(string filePath)
        << ",split [v0],vflip [v1]; [v0][v1] vstack [vis]\""
        << " -map [vis] -map 0:a -preset superfast -tune animation -c:v h264 -c:a copy -f matroska - | '" << confData->castnowPath << "' - " << confData->castnowLogCommand;
 
-    string tmp = ss.str();
-    const char* VisConfig = tmp.c_str();
-
-    shellFcn->CreateProcessPipe(VisConfig);
+    return ss.str();
 }

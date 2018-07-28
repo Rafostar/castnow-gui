@@ -1,6 +1,5 @@
 #include "configwindow.h"
 #include "ui_configwindow.h"
-#include "configdata.h"
 #include <QPushButton>
 #include <iostream>
 #include <string>
@@ -10,8 +9,6 @@
 #include <fstream>
 
 using namespace std;
-
-ConfigData confDataCW;
 
 QString framerateInfoText = "Sets the number of frames, that are displayed in one second of video.\n"
                             "Raising this value increases playback smoothness.\n"
@@ -77,22 +74,22 @@ void ConfigWindow::on_doubleSpinBoxDesktopOffset_valueChanged(const QString &arg
 
 void ConfigWindow::UpdateConfigWindowValues()
 {
-    if(confDataCW.castnowPath != "castnow")
+    if(confData->castnowPath != "castnow")
     {
-        QString castnowPath = QString::fromStdString(confDataCW.castnowPath);
+        QString castnowPath = QString::fromStdString(confData->castnowPath);
         ui->castnowEditPath->setText(castnowPath);
     }
 
-    if(confDataCW.ffmpegPath != "ffmpeg")
+    if(confData->ffmpegPath != "ffmpeg")
     {
-        QString ffmpegPath = QString::fromStdString(confDataCW.ffmpegPath);
+        QString ffmpegPath = QString::fromStdString(confData->ffmpegPath);
         ui->ffmpegEditPath->setText(ffmpegPath);
     }
 
-    ui->doubleSpinBoxFileBitrate->setValue(confDataCW.fileBitrate);
-    ui->doubleSpinBoxFileOffset->setValue(confDataCW.fileAudioDelay);
+    ui->doubleSpinBoxFileBitrate->setValue(confData->fileBitrate);
+    ui->doubleSpinBoxFileOffset->setValue(confData->fileAudioDelay);
 
-    int VisMode = confDataCW.visualizerMode;
+    int VisMode = confData->visualizerMode;
     switch (VisMode)
     {
         case 0 : ui->visDisabledRadioButton->click();
@@ -103,10 +100,10 @@ void ConfigWindow::UpdateConfigWindowValues()
                  break;
     }
 
-    ui->spinBoxDesktopFramerate->setValue(confDataCW.desktopFramerate);
-    ui->doubleSpinBoxDesktopBitrate->setValue(confDataCW.desktopBitrate);
-    ui->doubleSpinBoxDesktopOffset->setValue(confDataCW.desktopAudioDelay);
-    ui->spinBoxDesktopQueueSize->setValue(confDataCW.threadQueueSize);
+    ui->spinBoxDesktopFramerate->setValue(confData->desktopFramerate);
+    ui->doubleSpinBoxDesktopBitrate->setValue(confData->desktopBitrate);
+    ui->doubleSpinBoxDesktopOffset->setValue(confData->desktopAudioDelay);
+    ui->spinBoxDesktopQueueSize->setValue(confData->threadQueueSize);
 }
 
 void ConfigWindow::UpdateUsedValues()
@@ -116,53 +113,53 @@ void ConfigWindow::UpdateUsedValues()
 
     if(castnowEditPathText != "")
     {
-        confDataCW.castnowPath = ui->castnowEditPath->text().toUtf8().constData();
+        confData->castnowPath = ui->castnowEditPath->text().toUtf8().constData();
     }
     else
     {
-        confDataCW.castnowPath = confDataCW.defaultCastnowPath;
+        confData->castnowPath = confData->defaultCastnowPath;
     }
 
     if(ffmpegEditPathText != "")
     {
-        confDataCW.ffmpegPath = ui->ffmpegEditPath->text().toUtf8().constData();
+        confData->ffmpegPath = ui->ffmpegEditPath->text().toUtf8().constData();
     }
     else
     {
-        confDataCW.ffmpegPath = confDataCW.defaultFfmpegPath;
+        confData->ffmpegPath = confData->defaultFfmpegPath;
     }
 
-    confDataCW.fileBitrate = ui->doubleSpinBoxFileBitrate->value();
-    confDataCW.fileAudioDelay = ui->doubleSpinBoxFileOffset->value();
+    confData->fileBitrate = ui->doubleSpinBoxFileBitrate->value();
+    confData->fileAudioDelay = ui->doubleSpinBoxFileOffset->value();
 
     if(ui->visDisabledRadioButton->isChecked())
     {
-        confDataCW.visualizerMode = 0;
+        confData->visualizerMode = 0;
     }
     else if(ui->visAutoRadioButton->isChecked())
     {
-        confDataCW.visualizerMode = 1;
+        confData->visualizerMode = 1;
     }
     else if(ui->visAlwaysRadioButton->isChecked())
     {
-        confDataCW.visualizerMode = 2;
+        confData->visualizerMode = 2;
     }
 
-    confDataCW.desktopFramerate = ui->spinBoxDesktopFramerate->value();
-    confDataCW.desktopBitrate = ui->doubleSpinBoxDesktopBitrate->value();
-    confDataCW.desktopAudioDelay = ui->doubleSpinBoxDesktopOffset->value();
-    confDataCW.threadQueueSize = ui->spinBoxDesktopQueueSize->value();
+    confData->desktopFramerate = ui->spinBoxDesktopFramerate->value();
+    confData->desktopBitrate = ui->doubleSpinBoxDesktopBitrate->value();
+    confData->desktopAudioDelay = ui->doubleSpinBoxDesktopOffset->value();
+    confData->threadQueueSize = ui->spinBoxDesktopQueueSize->value();
 }
 
 void ConfigWindow::RestoreDefaultValues()
 {
-    ui->doubleSpinBoxFileBitrate->setValue(confDataCW.defaultFileBitrate);
-    ui->doubleSpinBoxFileOffset->setValue(confDataCW.defaultFileAudioDelay);
+    ui->doubleSpinBoxFileBitrate->setValue(confData->defaultFileBitrate);
+    ui->doubleSpinBoxFileOffset->setValue(confData->defaultFileAudioDelay);
 
-    ui->spinBoxDesktopFramerate->setValue(confDataCW.defaultDesktopFramerate);
-    ui->doubleSpinBoxDesktopBitrate->setValue(confDataCW.defaultDesktopBitrate);
-    ui->doubleSpinBoxDesktopOffset->setValue(confDataCW.defaultDesktopAudioDelay);
-    ui->spinBoxDesktopQueueSize->setValue(confDataCW.defaultThreadQueueSize);
+    ui->spinBoxDesktopFramerate->setValue(confData->defaultDesktopFramerate);
+    ui->doubleSpinBoxDesktopBitrate->setValue(confData->defaultDesktopBitrate);
+    ui->doubleSpinBoxDesktopOffset->setValue(confData->defaultDesktopAudioDelay);
+    ui->spinBoxDesktopQueueSize->setValue(confData->defaultThreadQueueSize);
 }
 
 void ConfigWindow::on_buttonBoxConfig_clicked(QAbstractButton *button)
@@ -174,6 +171,6 @@ void ConfigWindow::on_buttonBoxConfig_clicked(QAbstractButton *button)
     else if((QPushButton *)button == ui->buttonBoxConfig->button(QDialogButtonBox::Save))
     {
         UpdateUsedValues();
-        confDataCW.SaveConfigurationToFile();
+        confData->SaveConfigurationToFile();
     }
 }

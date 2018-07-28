@@ -1,6 +1,7 @@
 #ifndef CONFIGWINDOW_H
 #define CONFIGWINDOW_H
 
+#include "configdata.h"
 #include <QDialog>
 #include <QAbstractButton>
 
@@ -31,6 +32,8 @@ private slots:
 
 private:
     Ui::ConfigWindow *ui;
+
+    ConfigData *confData = new ConfigData;
 };
 
 #endif // CONFIGWINDOW_H
