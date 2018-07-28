@@ -73,7 +73,12 @@ void ShellFunctions::LinkStreaming(string link)
 void ShellFunctions::CaptureDeviceStreaming()
 {
     stringstream ss;
-    ss << "ffmpeg -f v4l2 -framerate 30 -video_size 640x480 -i /dev/video0 -f matroska - | " << confDataSF.castnowPath << " --quiet -";
+    ss << "'" << confDataSF.ffmpegPath
+       << "' -hide_banner -f v4l2"
+       << " -framerate 30"
+       << " -video_size 640x480"
+       << " -i /dev/video0"
+       << " -f matroska - | '" << confDataSF.castnowPath << "' - " << confDataSF.castnowLogCommand;
 
     string tmp = ss.str();
     //cout << "Running: " << tmp << endl; // for debug

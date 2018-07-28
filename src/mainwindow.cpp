@@ -197,6 +197,8 @@ void MainWindow::on_castFolderButton_clicked()
 
 void MainWindow::on_castDeviceButton_clicked()
 {
+    EnableCastingButtons(false);
+    ui->avProgressBar->setFormat("Casting Device");
     shellFcn->CaptureDeviceStreaming();
 }
 
