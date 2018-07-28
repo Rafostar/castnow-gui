@@ -85,7 +85,7 @@ void MainWindow::EnableCastingButtons(bool state)
 
     ui->castCDButton->setEnabled(state);
     ui->castDesktopButton->setEnabled(state);
-    ui->castFolderButton->setEnabled(state);
+    //ui->castFolderButton->setEnabled(state);
     ui->castDeviceButton->setEnabled(state);
 
     ui->avToggleButton->setEnabled(!state);
@@ -216,6 +216,10 @@ void MainWindow::LogFileChanged()
     if(lineContent == "Scanning")
     {
         ui->avProgressBar->setFormat("Loading...");
+    }
+    else if(lineContent == "Playing???")
+    {
+        SetMediaPreview("video", filePathQS);
     }
     else if(lineContent == "Error")
     {
