@@ -180,8 +180,6 @@ void MainWindow::on_castCDButton_clicked()
     EnableCastingButtons(false);
     ui->avProgressBar->setFormat("Casting Audio CD");
     shellFcn->AudioCDStreaming();
-
-    //shellFcn->MusicVisualizerStreaming("/tmp/test.flac");
 }
 
 void MainWindow::on_castDesktopButton_clicked()
