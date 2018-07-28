@@ -18,6 +18,7 @@ Some of them might be available from your linux distro repos.
 Try installing them with your package manager or follow the links for more info.
 Currently **VAAPI encoding _is required_.** Make sure you have it installed.
 More info and how to install VAAPI [here](https://wiki.archlinux.org/index.php/Hardware_video_acceleration).
+Also desktop streaming probably does not work under **wayland** (I haven't tested it).
 
 ### Desktop streaming noise fix
 Currently **default audio recording device** is used when streaming desktop.
