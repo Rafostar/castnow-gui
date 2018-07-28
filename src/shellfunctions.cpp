@@ -73,6 +73,8 @@ void ShellFunctions::CaptureDeviceStreaming()
        << " -framerate 30"
        << " -video_size 640x480"
        << " -i /dev/video0"
+       << " -pix_fmt yuv420p"
+       << " -c:v h264 -level:v 4.1"
        << " -f matroska - | '" << confData->castnowPath << "' - " << confData->castnowLogCommand;
 
     string tmp = ss.str();
