@@ -96,7 +96,7 @@ void ShellFunctions::DesktopStreamingVAAPI()
        << " -i :0.0 -f alsa -thread_queue_size " << confDataSF.threadQueueSize
        << " -ac 2 -itsoffset " << totalDelay
        << " -i default -vaapi_device '/dev/dri/renderD128' -vf 'format=nv12,hwupload' -c:v h264_vaapi -level:v 4.1 -b:v " << confDataSF.desktopBitrate
-       << "M -c:a flac -f matroska - | '" << confDataSF.castnowPath << "' --quiet -";
+       << "M -c:a flac -f matroska - | '" << confDataSF.castnowPath << "' - " << confDataSF.castnowLogCommand;
 
     string tmp = ss.str();
     //cout << "Running: " << tmp << endl; // for debug

@@ -186,7 +186,7 @@ void MainWindow::on_castCDButton_clicked()
 void MainWindow::on_castDesktopButton_clicked()
 {
     EnableCastingButtons(false);
-    ui->avProgressBar->setFormat("Started casting desktop");
+    ui->avProgressBar->setFormat("Casting Desktop");
     shellFcn->DesktopStreamingVAAPI();
 }
 
@@ -245,7 +245,6 @@ string MainWindow::LogFileContent()
 
 void MainWindow::on_avStopButton_clicked()
 {
-    ui->avProgressBar->setFormat("Streaming is stopping. Please wait...");
     shellFcn->StopProcessPipe();
     EnableCastingButtons(true);
     ui->avProgressBar->setFormat("00:00:00");
