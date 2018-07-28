@@ -116,20 +116,26 @@ void ShellFunctions::AudioCDStreaming()
        << "' -hide_banner"
        << " -f libcdio"
        << " -speed " << driveSpeed
-       << " -i /dev/sr0"
-       << " -f wav - | '" << confData->castnowPath << "' - " << confData->castnowLogCommand;
+       << " -i /dev/sr0";
+
+    if(confData->visualizerMode == 2)
+    {
+        //CHECK COVER FUNCTION (INSTEAD OF BELOW LINE)
+        ss << " -f wav - | '" << confData->castnowPath << "' - " << confData->castnowLogCommand;
+    }
+    else if(confData->visualizerMode == 1)
+    {
+        ss << visCfg->MusicVisualizer()
+           << " -f matroska - | '" << confData->castnowPath << "' - " << confData->castnowLogCommand;
+    }
+    else
+    {
+        ss << " -f wav - | '" << confData->castnowPath << "' - " << confData->castnowLogCommand;
+    }
 
     string tmp = ss.str();
-    cout << "Running: " << tmp << endl; // for debug
-    const char* castLink = tmp.c_str();
+    //cout << "Running: " << tmp << endl; // for debug
+    const char* castCD = tmp.c_str();
 
-    CreateProcessPipe(castLink);
-}
-
-void ShellFunctions::MusicVisualizerStreaming(string filePath)
-{
-    string visConfig = visCfg->MusicVisualizer(filePath);
-    const char* castVisualizer = visConfig.c_str();
-
-    CreateProcessPipe(castVisualizer);
+    CreateProcessPipe(castCD);
 }

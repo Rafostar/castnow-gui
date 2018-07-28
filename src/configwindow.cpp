@@ -94,9 +94,9 @@ void ConfigWindow::UpdateConfigWindowValues()
     {
         case 0 : ui->visDisabledRadioButton->click();
                  break;
-        case 1 : ui->visAutoRadioButton->click();
+        case 1 : ui->visAlwaysRadioButton->click();
                  break;
-        case 2 : ui->visAlwaysRadioButton->click();
+        case 2 : ui->visAutoRadioButton->click();
                  break;
     }
 
@@ -136,11 +136,11 @@ void ConfigWindow::UpdateUsedValues()
     {
         confData->visualizerMode = 0;
     }
-    else if(ui->visAutoRadioButton->isChecked())
+    else if(ui->visAlwaysRadioButton->isChecked())
     {
         confData->visualizerMode = 1;
     }
-    else if(ui->visAlwaysRadioButton->isChecked())
+    else if(ui->visAutoRadioButton->isChecked())
     {
         confData->visualizerMode = 2;
     }

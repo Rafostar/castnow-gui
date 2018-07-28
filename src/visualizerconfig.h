@@ -8,7 +8,7 @@ using namespace std;
 class VisualizerConfig
 {
 public:
-    string MusicVisualizer(string filePath);
+    string MusicVisualizer();
 
 private:
     ConfigData *confData = new ConfigData;

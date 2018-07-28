@@ -24,17 +24,10 @@ string showcqt_tlength = "'st(0,0.17); 384*tc / (384 / ld(0) + tc*f /(1-ld(0))) 
 
 string video_format = "yuv420p";
 
-string VisualizerConfig::MusicVisualizer(string filePath)
+string VisualizerConfig::MusicVisualizer()
 {
-    double startDelay = 0;
-
     stringstream ss;
-    ss << "'" << confData->ffmpegPath
-       << "' -hide_banner -ss " << startDelay
-       << " -i '"<< filePath << "'"
-       << " -itsoffset " << confData->fileAudioDelay
-       << " -i '"<< filePath << "'"
-       << " -filter_complex"
+    ss << " -filter_complex"
        << " \"firequalizer=gain=" << fe_gain
        << ":scale=" << fe_scale
        << ":wfunc=" << fe_wfunc
@@ -55,7 +48,9 @@ string VisualizerConfig::MusicVisualizer(string filePath)
        << ":tlength=" << showcqt_tlength
        << ",format=" << video_format
        << ",split [v0],vflip [v1]; [v0][v1] vstack [vis]\""
-       << " -map [vis] -map 0:a -preset superfast -tune animation -c:v h264 -c:a copy -f matroska - | '" << confData->castnowPath << "' - " << confData->castnowLogCommand;
+       << " -map [vis] -map 0:a"
+       << " -preset superfast -tune animation"
+       << " -c:v h264 -c:a copy";
 
     return ss.str();
 }
