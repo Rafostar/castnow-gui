@@ -57,6 +57,8 @@ bool ConfigData::CheckConfigFile()
 
 void ConfigData::ReadConfigFile()
 {
+    setlocale(LC_NUMERIC, "C");
+
     ifstream configFile;
     string configLine;
     configFile.open(configFilePath);

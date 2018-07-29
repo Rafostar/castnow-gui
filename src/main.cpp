@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include <QApplication>
-//#include <QTimer>
 #include <QDesktopWidget>
 #include <string>
 #include <sstream>
@@ -12,6 +11,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+    QLocale::setDefault(QLocale::C);
     QApplication a(argc, argv);
     MainWindow w;
     ConfigData confData;
