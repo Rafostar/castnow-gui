@@ -27,10 +27,9 @@ If it is then you might hear **_amplified buzzing_** from your mic in your TV (b
 
 To fix this change default input device in your system configuration (using utility like **PulseAudio Volume Control**).
 
-### Install or update
-`wget -N -P ~/.local/bin/ https://github.com/Rafostar/castnow-gui/raw/master/castnow-gui`
-
-`sudo chmod +x ~/.local/bin/castnow-gui`
+### Build from source
+`qmake-qt5 castnow-gui.pro`
+`make`
 
 Or manually download castnow-gui file from root of this repo and set it as executable.
 
