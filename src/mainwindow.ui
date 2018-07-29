@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>560</width>
+    <width>610</width>
     <height>470</height>
    </rect>
   </property>
@@ -18,13 +18,13 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>560</width>
+    <width>610</width>
     <height>470</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>560</width>
+    <width>610</width>
     <height>470</height>
    </size>
   </property>
@@ -47,11 +47,16 @@
    <widget class="QPushButton" name="openFileButton">
     <property name="geometry">
      <rect>
-      <x>340</x>
+      <x>360</x>
       <y>10</y>
-      <width>101</width>
+      <width>111</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Cantarell</family>
+     </font>
     </property>
     <property name="focusPolicy">
      <enum>Qt::NoFocus</enum>
@@ -63,11 +68,16 @@
    <widget class="QPushButton" name="castFileButton">
     <property name="geometry">
      <rect>
-      <x>450</x>
+      <x>480</x>
       <y>10</y>
-      <width>101</width>
+      <width>121</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Cantarell</family>
+     </font>
     </property>
     <property name="focusPolicy">
      <enum>Qt::NoFocus</enum>
@@ -91,7 +101,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>321</width>
+      <width>341</width>
       <height>41</height>
      </rect>
     </property>
@@ -105,11 +115,16 @@
    <widget class="QPushButton" name="castDesktopButton">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>150</x>
       <y>400</y>
-      <width>131</width>
-      <height>31</height>
+      <width>151</width>
+      <height>34</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Cantarell</family>
+     </font>
     </property>
     <property name="focusPolicy">
      <enum>Qt::NoFocus</enum>
@@ -174,7 +189,7 @@
      <rect>
       <x>10</x>
       <y>70</y>
-      <width>431</width>
+      <width>461</width>
       <height>41</height>
      </rect>
     </property>
@@ -188,11 +203,16 @@
    <widget class="QPushButton" name="castLinkButton">
     <property name="geometry">
      <rect>
-      <x>450</x>
+      <x>480</x>
       <y>70</y>
-      <width>101</width>
+      <width>121</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Cantarell</family>
+     </font>
     </property>
     <property name="focusPolicy">
      <enum>Qt::NoFocus</enum>
@@ -216,7 +236,7 @@
      <rect>
       <x>0</x>
       <y>50</y>
-      <width>561</width>
+      <width>611</width>
       <height>20</height>
      </rect>
     </property>
@@ -229,7 +249,7 @@
      <rect>
       <x>0</x>
       <y>110</y>
-      <width>561</width>
+      <width>611</width>
       <height>20</height>
      </rect>
     </property>
@@ -240,11 +260,16 @@
    <widget class="QPushButton" name="castDeviceButton">
     <property name="geometry">
      <rect>
-      <x>430</x>
+      <x>460</x>
       <y>400</y>
-      <width>121</width>
-      <height>31</height>
+      <width>141</width>
+      <height>34</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Cantarell</family>
+     </font>
     </property>
     <property name="focusPolicy">
      <enum>Qt::NoFocus</enum>
@@ -268,7 +293,7 @@
      <rect>
       <x>0</x>
       <y>380</y>
-      <width>561</width>
+      <width>611</width>
       <height>20</height>
      </rect>
     </property>
@@ -281,9 +306,14 @@
      <rect>
       <x>10</x>
       <y>400</y>
-      <width>111</width>
-      <height>31</height>
+      <width>131</width>
+      <height>34</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Cantarell</family>
+     </font>
     </property>
     <property name="focusPolicy">
      <enum>Qt::NoFocus</enum>
@@ -308,11 +338,16 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>310</x>
       <y>400</y>
-      <width>121</width>
-      <height>31</height>
+      <width>141</width>
+      <height>34</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Cantarell</family>
+     </font>
     </property>
     <property name="focusPolicy">
      <enum>Qt::NoFocus</enum>
@@ -515,9 +550,9 @@ background-image: url(:/player_previews/images/av_no_media.png);</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>324</y>
+      <y>323</y>
       <width>324</width>
-      <height>22</height>
+      <height>24</height>
      </rect>
     </property>
     <property name="font">
@@ -552,7 +587,7 @@ width: 1px;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>560</width>
+     <width>610</width>
      <height>28</height>
     </rect>
    </property>
