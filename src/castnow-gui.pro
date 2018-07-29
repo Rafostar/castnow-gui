@@ -12,6 +12,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = castnow-gui
 TEMPLATE = app
 
+target.path = /usr/local/bin
+INSTALLS += target
 
 SOURCES += main.cpp\
         mainwindow.cpp \
