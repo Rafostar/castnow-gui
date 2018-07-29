@@ -32,8 +32,6 @@ To fix this change default input device in your system configuration (using util
 
 `make`
 
-Or manually download castnow-gui file from root of this repo and set it as executable.
-
 ### To do:
 - [X] Play file from specified path
 - [X] Open file using file browser
