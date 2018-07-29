@@ -32,6 +32,10 @@ To fix this change default input device in your system configuration (using util
 
 `make`
 
+`sudo make install`
+
+After that you can launch this program simply by running `castnow-gui` in terminal.
+
 ### To do:
 - [X] Play file from specified path
 - [X] Open file using file browser
