@@ -29,6 +29,7 @@ To fix this change default input device in your system configuration (using util
 
 ### Build from source
 `qmake-qt5 castnow-gui.pro`
+
 `make`
 
 Or manually download castnow-gui file from root of this repo and set it as executable.
