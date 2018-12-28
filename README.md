@@ -4,7 +4,8 @@
 
 castnow-gui - Qt interface for command-line chromecast player
 
-## This project evolved into GNOME Shell extension called [Cast-to-TV](https://github.com/Rafostar/gnome-shell-extension-cast-to-tv). All development has shifted to the new project. THIS IS AN UNFINISHED PROJECT!
+## This project evolved into Gnome Shell Extension called [Cast to TV](https://github.com/Rafostar/gnome-shell-extension-cast-to-tv). All development has shifted to the new project.
+## THIS IS AN UNFINISHED PROJECT!
 
 ### Requirements
 Here is a list of required programs that castnow-gui depends on:
